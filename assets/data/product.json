@@ -1,0 +1,132 @@
+[
+    {
+        "id": 19477,
+        "name": "PSP 10$ USA",
+        "slug": "dont-give-up-part-5",
+        "permalink": "https://smhosstore.com/product/dont-give-up-part-5/",
+        "date_created": "2023-07-02T08:11:00",
+        "date_modified": "2023-07-17T15:28:38",
+        "type": "simple",
+        "status": "publish",
+        "featured": false,
+        "catalog_visibility": "visible",
+        "description": "",
+        "short_description": "",
+        "sku": "",
+        "price": "10",
+        "regular_price": "10",
+        "sale_price": "",
+        "date_on_sale_from": "",
+        "date_on_sale_to": "",
+        "price_html": "<span class=\"woocommerce-Price-amount amount\"><bdi><span class=\"woocommerce-Price-currencySymbol\">&#36;</span>1.00</bdi></span>",
+        "on_sale": false,
+        "purchasable": true,
+        "total_sales": 0,
+        "virtual": true,
+        "downloadable": true,
+        "downloads": [],
+        "download_limit": 5,
+        "download_expiry": -1,
+        "download_type": "standard",
+        "external_url": "",
+        "button_text": "",
+        "tax_status": "taxable",
+        "tax_class": "",
+        "manage_stock": false,
+        "stock_quantity": null,
+        "in_stock": true,
+        "backorders": "no",
+        "backorders_allowed": false,
+        "backordered": false,
+        "sold_individually": false,
+        "weight": "",
+        "dimensions": {
+            "length": "",
+            "width": "",
+            "height": ""
+        },
+        "shipping_required": false,
+        "shipping_taxable": false,
+        "shipping_class": "",
+        "shipping_class_id": 0,
+        "reviews_allowed": true,
+        "average_rating": "0.00",
+        "rating_count": 0,
+        "related_ids": [
+            19425,
+            19424,
+            19437,
+            19420,
+            19422
+        ],
+        "upsell_ids": [],
+        "cross_sell_ids": [],
+        "parent_id": 0,
+        "purchase_note": "",
+        "categories": [
+            {
+                "id": 236,
+                "name": "Playstation",
+                "slug": "mp3"
+            },
+            {
+                "id": 236,
+                "name": "USA Store",
+                "slug": "mp3"
+            }
+        ],
+        "tags": [
+            {
+                "id": 260,
+                "name": "Best Sellers",
+                "slug": "best-sellers"
+            },
+            {
+                "id": 261,
+                "name": "MP3",
+                "slug": "mp3"
+            },
+            {
+                "id": 262,
+                "name": "On Sale",
+                "slug": "on-sale"
+            }
+        ],
+        "images": [
+            {
+                "id": 19190,
+                "date_created": "2023-07-17T15:11:02",
+                "date_modified": "2023-07-17T15:28:40",
+                "src": "https://images.g2a.com/newlayout/270x362/1x1x0/playstation-network-gift-card-70-usd-psn-united-states-i10000070169005/596676baae653a7fb06b1d92",
+                "name": "&#8216;T GIVE-UP(MP3)",
+                "alt": "",
+                "position": 0
+            }
+        ],
+        "attributes": [],
+        "default_attributes": [],
+        "variations": [],
+        "grouped_products": [],
+        "upsell_id": [],
+        "menu_order": 0,
+        "reviews": [],
+        "is_purchased": false,
+        "store": {
+            "id": 1,
+            "name": "smhos",
+            "shop_name": "",
+            "url": "https://smhosstore.com/store/smhos/",
+            "image": "https://secure.gravatar.com/avatar/f14c94c346a8bc9d672de619ddcae22e?s=96&d=mm&r=g",
+            "address": {
+                "street_1": "",
+                "street_2": "",
+                "city": "",
+                "zip": "",
+                "country": "",
+                "state": ""
+            }
+        },
+        "is_added_cart": false,
+        "is_added_wishlist": false
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "name": "USA Store",
+        "slug": "items",
+        "parent": 0,
+        "description": "",
+        "display": "",
+        "image": "",
+        "menu_order": 1,
+        "count": 0
+    },
+    {
+        "id": 1,
+        "name": "EUR Store",
+        "slug": "items",
+        "parent": 0,
+        "description": "",
+        "display": "",
+        "image": "",
+        "menu_order": 1,
+        "count": 0
+    }
+]
