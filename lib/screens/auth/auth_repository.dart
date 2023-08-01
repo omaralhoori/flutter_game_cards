@@ -22,8 +22,8 @@ Future<LoginResponse> getLoginUserRestApi(Map<String, dynamic> request) async {
   appStore.setLoading(true);
   return await responseHandler(await APICall().postMethod("erpnext.api.auth.login", request)).then((value) async {
     appStore.setLoading(false);
-
-    LoginResponse loginResponse = LoginResponse.fromJson(value);
+    if (value['message'] != null && value['message']['success_key'] == 1){
+      LoginResponse loginResponse = LoginResponse.fromJson(value['message']);
     appStore.setUserProfile(loginResponse.profileImage.validate());
     await setUserInfo(loginResponse, isRemember: false, password: '', username: '');
     await appStore.setToken(loginResponse.token.validate());
@@ -32,6 +32,8 @@ Future<LoginResponse> getLoginUserRestApi(Map<String, dynamic> request) async {
     await appStore.setTokenExpired(true);
 
     return loginResponse;
+    }
+    throw 'Login failed';
   }).catchError((e, s) {
     appStore.setLoading(false);
     debugPrint('ERROR - $e - STACK-TRACE - $s');

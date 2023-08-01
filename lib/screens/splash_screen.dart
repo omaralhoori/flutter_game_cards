@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return SplashScreenView(
-      navigateTo: SignInScreen(), // (appStore.isFirstTime) ? WalkThroughScreen() : 
+      navigateTo: appStore.isLoggedIn ? DashboardScreen():SignInScreen(), // (appStore.isFirstTime) ? WalkThroughScreen() : 
       imageSize: 200,
       imageSrc: ic_logo,
       text: locale.appName,

@@ -13,15 +13,15 @@ class LoginResponse {
   LoginResponse({this.token, this.userEmail, this.userNicename, this.userDisplayName, this.firstName, this.lastName, this.userId, this.avatar, this.profileImage});
 
   LoginResponse.fromJson(Map<String, dynamic> json) {
-    token = json['token'];
-    userEmail = json['user_email'];
-    userNicename = json['user_nicename'];
-    userDisplayName = json['user_display_name'];
+    token = "${json['api_key']}:${json['secret_key']}";//json['token'];
+    userEmail = json['email'];
+    userNicename = json['fullname'];
+    userDisplayName = json['fullname'];
     firstName = json['first_name'];
     lastName = json['last_name'];
-    userId = json['user_id'];
-    avatar = json['avatar'];
-    profileImage = json['profile_image'];
+    //userId = json['username'];
+    avatar = json['image'];
+    profileImage = json['image'];
   }
 
   Map<String, dynamic> toJson() {
