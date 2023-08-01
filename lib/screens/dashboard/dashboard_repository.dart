@@ -206,11 +206,11 @@ Future<List<CategoriesListResponse>> getCatListRestApi(
 
   log('GET-CAT-LIST-REST-API');
   //
-  final String response = 
-          await rootBundle.loadString('assets/data/categories.json');
-  List<dynamic> res = await json.decode(response);
-  //Iterable res = await responseHandler(await APICall().getMethod("wc/v3/products/categories?parent=0&page=$page&per_page=$perPage"));
-  res.forEach((element) {
+  // final String response = 
+  //         await rootBundle.loadString('assets/data/categories.json');
+  // List<dynamic> res = await json.decode(response);
+  final res = await responseHandler(await APICall().getMethod("erpnext.api.data.get_categories"));
+  res['message'].forEach((element) {
     categories.add(CategoriesListResponse.fromJson(element));
   });
 

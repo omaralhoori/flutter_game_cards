@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:aes_crypt_null_safe/aes_crypt_null_safe.dart';
+import 'package:bookkart_flutter/configs.dart';
 import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
 import 'package:crypto/crypto.dart';
@@ -180,4 +181,10 @@ Future<String> getBookFilePath(String? bookId, String url, {isSampleFile = false
   log("--- FULL FILE PATH: " + filePath);
 
   return filePath;
+}
+
+
+String formatImageUrl(String src){
+  if (src.startsWith('http')) return src;
+  return DOMAIN_URL + src;
 }

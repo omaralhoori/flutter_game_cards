@@ -46,13 +46,15 @@ class APICall {
     Map<String, String> headers = {
       HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
       HttpHeaders.cacheControlHeader: 'no-cache',
+      'Authorization':'token ${appStore.token}'
     };
 
     if (requireToken) {
       // TODO: WITH NO AUTHORIZE HEADER
 
-      headers.putIfAbsent('token', () => appStore.token);
-      headers.putIfAbsent('id', () => appStore.userId.toString());
+      // headers.putIfAbsent('Authorization', () => 'token ${appStore.token}');
+      // headers.putIfAbsent('token', () => appStore.token);
+      // headers.putIfAbsent('id', () => appStore.userId.toString());
 
       // TODO: WITH AUTHORIZE HEADER
 

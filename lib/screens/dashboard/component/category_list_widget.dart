@@ -5,6 +5,7 @@ import 'package:bookkart_flutter/screens/bookDescription/view/list_view_all_book
 import 'package:bookkart_flutter/screens/dashboard/model/category_list_model.dart';
 import 'package:bookkart_flutter/utils/colors.dart';
 import 'package:bookkart_flutter/utils/images.dart';
+import 'package:bookkart_flutter/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -37,15 +38,15 @@ class CategoryListWidget extends StatelessWidget {
                         ? CachedImageWidget(
                             url: ic_book_logo,
                             color: primaryColor.withOpacity(0.2),
-                            width: 50,
-                            height: 50,
+                            width: 120,
+                            height: 120,
                             fit: BoxFit.cover,
                             // circle: true,
                           )
                         : Container(
                             // margin: EdgeInsets.all(8),
                             child: CachedImageWidget(
-                              url: data.image!.src.validate(),
+                              url: formatImageUrl(data.image!.src.validate()),
                               width: 120,
                               height: 120,
                               fit: BoxFit.cover,

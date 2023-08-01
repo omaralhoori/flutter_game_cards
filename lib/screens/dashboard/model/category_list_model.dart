@@ -14,15 +14,9 @@ class CategoriesListResponse {
 
   factory CategoriesListResponse.fromJson(Map<String, dynamic> json) {
     return CategoriesListResponse(
-      count: json['count'],
-      description: json['description'],
-      display: json['display'],
-      id: json['id'],
       image: json['image'] != null ? Image.fromJson({"src": json['image']}) : null,
-      menuOrder: json['menu_order'],
-      name: json['name'],
-      parent: json['parent'],
-      slug: json['slug'],
+      name: json['item_group_name'],
+      slug: json['name'],
     );
   }
 

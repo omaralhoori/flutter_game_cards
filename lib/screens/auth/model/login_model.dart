@@ -13,7 +13,7 @@ class LoginResponse {
   LoginResponse({this.token, this.userEmail, this.userNicename, this.userDisplayName, this.firstName, this.lastName, this.userId, this.avatar, this.profileImage});
 
   LoginResponse.fromJson(Map<String, dynamic> json) {
-    token = "${json['api_key']}:${json['secret_key']}";//json['token'];
+    token = "${json['api_key']}:${json['api_secret']}";//json['token'];
     userEmail = json['email'];
     userNicename = json['fullname'];
     userDisplayName = json['fullname'];
