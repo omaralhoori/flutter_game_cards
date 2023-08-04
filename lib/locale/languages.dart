@@ -331,6 +331,8 @@ abstract class BaseLanguage {
 
   String get lblFree;
 
+  String get avlblSoon;
+
   String get lblShowMore;
 
   String get lblShowLess;

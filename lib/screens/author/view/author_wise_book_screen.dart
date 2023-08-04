@@ -90,16 +90,17 @@ class _AuthorWiseBookScreenState extends State<AuthorWiseBookScreen> {
                           itemCount: snap.validate().length,
                           listAnimationType: ListAnimationType.Scale,
                           itemBuilder: (_, index) {
-                            return OpenBookDescriptionOnTap(
-                              bookId: snap.validate()[index].id.validate().toString(),
-                              currentIndex: index,
-                              child: BookWidget(
-                                newBookData: snap.validate()[index],
-                                showSecondDesign: true,
-                                index: index,
-                                width: context.width() / 2 - 8,
-                              ),
-                            ).paddingSymmetric(vertical: 8);
+                            return Container();
+                            // return OpenBookDescriptionOnTap(
+                            //   bookId: snap.validate()[index].id.validate().toString(),
+                            //   currentIndex: index,
+                            //   child: BookWidget(
+                            //     newBookData: snap.validate()[index],
+                            //     showSecondDesign: true,
+                            //     index: index,
+                            //     width: context.width() / 2 - 8,
+                            //   ),
+                            // ).paddingSymmetric(vertical: 8);
                           },
                         ),
                       ],

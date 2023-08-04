@@ -1,6 +1,7 @@
 import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/bookDescription/view/list_view_all_books_screen.dart';
 import 'package:bookkart_flutter/screens/dashboard/component/book_widget.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/utils/colors.dart';
 import 'package:bookkart_flutter/utils/common_base.dart';
@@ -43,7 +44,7 @@ class CategoryBookComponent extends StatelessWidget {
             spacing: 0,
             itemBuilder: (context, i) {
               Color bgColor = bookBackgroundColor[i % bookBackgroundColor.length];
-              BookDataModel data = categoryBookData.product.validate()[i];
+              CardModel data = categoryBookData.product.validate()[i];
 
               return OpenBookDescriptionOnTap(
                 bookId: data.id.toString(),

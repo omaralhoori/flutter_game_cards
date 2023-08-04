@@ -1,4 +1,5 @@
 import 'package:bookkart_flutter/screens/dashboard/component/book_widget.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/utils/common_base.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:nb_utils/nb_utils.dart';
 import '../../../utils/colors.dart';
 
 class BookListDashboardComponent extends StatelessWidget {
-  final List<BookDataModel> bookList;
+  final List<CardModel> bookList;
 
   const BookListDashboardComponent({Key? key, required this.bookList}) : super(key: key);
 
@@ -19,7 +20,7 @@ class BookListDashboardComponent extends StatelessWidget {
       physics: BouncingScrollPhysics(),
       itemCount: bookList.length,
       itemBuilder: (BuildContext context, int index) {
-        BookDataModel data = bookList[index];
+        CardModel data = bookList[index];
 
         return OpenBookDescriptionOnTap(
           bookId: data.id.toString(),

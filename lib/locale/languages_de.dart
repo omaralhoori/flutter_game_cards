@@ -12,7 +12,8 @@ class LanguageDe extends BaseLanguage {
 
   @override
   String get titleAccount => "Konto";
-
+@override
+  String get avlblSoon => "Available Soon";
   @override
   String get msgNoInternet => "Sie sind nicht mit dem Internet verbunden";
 

@@ -1,9 +1,9 @@
-import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/utils/common_base.dart';
 import 'package:flutter/material.dart';
 
 class BookWidget extends StatelessWidget {
-  final BookDataModel newBookData;
+  final CardModel newBookData;
   final int index;
   final double? width;
   final bool? isShowRating;

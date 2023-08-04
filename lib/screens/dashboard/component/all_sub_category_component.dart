@@ -3,6 +3,7 @@ import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/bookDescription/book_description_repository.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/category_model.dart';
 import 'package:bookkart_flutter/screens/bookDescription/view/list_view_all_books_screen.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/subcategory_model.dart';
 import 'package:bookkart_flutter/utils/images.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -17,7 +18,7 @@ class AllSubCategoryComponent extends StatefulWidget {
 }
 
 class AllSubCategoryComponentState extends State<AllSubCategoryComponent> {
-  Future<List<CategoryModel>>? future;
+  Future<List<SubcategoryModel>>? future;
   List<CategoryModel> subCategoryList = [];
 
   @override
@@ -29,7 +30,8 @@ class AllSubCategoryComponentState extends State<AllSubCategoryComponent> {
   }
 
   void init() async {
-    future = getSubCategories(widget.categoryId);
+    Map<String, dynamic> request = {"category": widget.categoryId};
+    future = getSubCategories(request: request);
   }
 
   @override
@@ -39,7 +41,7 @@ class AllSubCategoryComponentState extends State<AllSubCategoryComponent> {
 
   @override
   Widget build(BuildContext context) {
-    return SnapHelperWidget<List<CategoryModel>>(
+    return SnapHelperWidget<List<SubcategoryModel>>(
       future: future,
       loadingWidget: Offstage(),
       defaultErrorMessage: locale.lblNoDataFound,
@@ -61,7 +63,7 @@ class AllSubCategoryComponentState extends State<AllSubCategoryComponent> {
                     decoration: boxDecorationWithRoundedCorners(borderRadius: radius(8)),
                     padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
                     child: Text(
-                      snap.validate()[index].name.validate().replaceAll('&amp;', '&'),
+                      snap.validate()[index].id.validate().replaceAll('&amp;', '&'),
                       style: boldTextStyle(color: textPrimaryColorGlobal),
                     ),
                   ),
@@ -69,8 +71,9 @@ class AllSubCategoryComponentState extends State<AllSubCategoryComponent> {
                     ViewAllBooksScreen(
                       isCategoryBook: true,
                       showSecondDesign: true,
-                      categoryId: snap.validate()[index].id.toString(),
-                      categoryName: snap.validate()[index].name.validate().replaceAll('&amp;', '&'),
+                      categoryId: widget.categoryId,
+                      subcategoryId: snap.validate()[index].id.toString(),
+                      categoryName: snap.validate()[index].id.validate().replaceAll('&amp;', '&'),
                     ).launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
                   },
                 );

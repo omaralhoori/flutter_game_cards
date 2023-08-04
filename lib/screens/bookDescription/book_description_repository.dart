@@ -8,7 +8,9 @@ import 'package:bookkart_flutter/screens/bookDescription/model/all_book_list_res
 import 'package:bookkart_flutter/screens/bookDescription/model/category_model.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/my_cart_model.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/paid_book_response.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/subcategory_model.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -87,14 +89,15 @@ Future<List<Reviews>> getProductReviews({required int id}) async {
   return reviewList.map((model) => Reviews.fromJson(model)).toList();
 }
 
-Future<List<CategoryModel>> getSubCategories(parent) async {
+Future<List<SubcategoryModel>> getSubCategories({Map<String, dynamic>? request}) async {
   log('GET-SUBCATEGORIES-API');
-  final String response = 
-          await rootBundle.loadString('assets/data/sub_categories.json');
-  final resData = await json.decode(response);
+  // final String response = 
+  //         await rootBundle.loadString('assets/data/sub_categories.json');
+  // final resData = await json.decode(response);
   //await buildHttpResponse('wc/v3/products/categories?parent=$parent', method: HttpMethodType.GET)
-  return (resData as List).map((e) {
-    return CategoryModel.fromJson(e);
+  final response = await responseHandler(await APICall().postMethod("erpnext.api.data.get_subcategories", request));
+  return (response['message'] as List).map((e) {
+    return SubcategoryModel.fromJson(e);
   }).toList();
 }
 
@@ -103,35 +106,39 @@ Future<Reviews> bookReviewRestApi(Map<String, dynamic> request) async {
   return Reviews.fromJson(await responseHandler(await APICall().postMethod("wc/v3/products/reviews", request, requireToken: true)));
 }
 /// same reviewer can't sent same review multiple time
-Future<List<BookDataModel>> getAllBookRestApi({
+Future<List<CardModel>> getAllBookRestApi({
   required bool isCategoryBook,
   Map<String, dynamic>? request,
   required requestType,
-  required List<BookDataModel> services,
+  required List<CardModel> services,
   required Function(dynamic p0) lastPageCallBack,
   required int page,
 }) async {
   log('GET-ALL-BOOK-REST-API');
-  Map<String, dynamic> req = {};
+  // Map<String, dynamic> req = {};
 
-  Map<String, dynamic> requestCombination = {
-    "newest": "newest",
-    "you_may_like": "special_product",
-    "suggested_for_you": "special_product",
-    "product_visibility": "featured",
-  };
+  // Map<String, dynamic> requestCombination = {
+  //   "newest": "newest",
+  //   "you_may_like": "special_product",
+  //   "suggested_for_you": "special_product",
+  //   "product_visibility": "featured",
+  // };
 
-  log(requestCombination[requestType]);
-  (isCategoryBook) ? req = request! : req = {requestCombination[requestType]: requestType, 'product_per_page': PER_PAGE_ITEM};
-  // Map<String, dynamic> resData = await buildHttpResponse("iqonic-api/api/v1/woocommerce/get-product?parent=0&page=$page&per_page=$PER_PAGE_ITEM", request: req, method: HttpMethodType.POST);
-  final String response = 
-          await rootBundle.loadString('assets/data/all_books.json');
-  final resData = await json.decode(response);
-  AllBookListResponse res = AllBookListResponse.fromJson(resData);
+  // log(requestCombination[requestType]);
+  // (isCategoryBook) ? req = request! : req = {requestCombination[requestType]: requestType, 'product_per_page': PER_PAGE_ITEM};
+  //Map<String, dynamic> resData = await buildHttpResponse("iqonic-api/api/v1/woocommerce/get-product?parent=0&page=$page&per_page=$PER_PAGE_ITEM", request: req, method: HttpMethodType.POST);
+  final response = await responseHandler(await APICall().postMethod("erpnext.api.data.get_items", request));
+  // final String response = 
+  //         await rootBundle.loadString('assets/data/all_books.json');
+  // final resData = await json.decode(response);
+  //AllBookListResponse res = AllBookListResponse.fromJson(resData);
 
-  if (page == 1) services.clear();
-  services.addAll(res.data.validate());
-  lastPageCallBack.call(res.data.validate().length != PER_PAGE_ITEM);
-
+  // if (page == 1) services.clear();
+  // services.addAll(res.data.validate());
+  // lastPageCallBack.call(res.data.validate().length != PER_PAGE_ITEM);
+  for (var res in response['message']){
+    
+    services.add(CardModel.fromJson(res));
+  }
   return services;
 }

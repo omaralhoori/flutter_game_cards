@@ -85,24 +85,25 @@ class _MyBookMarkScreenState extends State<MyBookMarkScreen> {
                           init();
                           setState(() {});
                         },
-                        child: BookWidget(
-                          width: context.width() / 2 - 20,
-                          showSecondDesign: true,
-                          isShowRating: true,
-                          index: index,
-                          newBookData: BookDataModel(
-                            id: data.proId,
-                            name: data.name,
-                            sku: data.sku,
-                            price: data.price.validate().toDouble(),
-                            regularPrice: data.regularPrice.validate().toDouble(),
-                            salePrice: data.salePrice.validate().toDouble(),
-                            dateCreated: data.createdAt,
-                            images: [
-                              Images(src: data.thumbnail.validate()),
-                            ],
-                          ),
-                        ),
+                        child: Container()
+                        // BookWidget(
+                        //   width: context.width() / 2 - 20,
+                        //   showSecondDesign: true,
+                        //   isShowRating: true,
+                        //   index: index,
+                        //   newBookData: BookDataModel(
+                        //     id: data.proId,
+                        //     name: data.name,
+                        //     sku: data.sku,
+                        //     price: data.price.validate().toDouble(),
+                        //     regularPrice: data.regularPrice.validate().toDouble(),
+                        //     salePrice: data.salePrice.validate().toDouble(),
+                        //     dateCreated: data.createdAt,
+                        //     images: [
+                        //       Images(src: data.thumbnail.validate()),
+                        //     ],
+                        //   ),
+                        // ),
                       );
                     },
                   ),

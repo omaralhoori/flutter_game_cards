@@ -10,6 +10,7 @@ import 'package:bookkart_flutter/screens/dashboard/component/book_data_component
 import 'package:bookkart_flutter/screens/dashboard/component/book_list_dashboard_component.dart';
 import 'package:bookkart_flutter/screens/dashboard/component/book_store_slider_component.dart';
 import 'package:bookkart_flutter/screens/dashboard/component/view_all_component.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/header_model.dart';
 import 'package:bookkart_flutter/utils/colors.dart';
@@ -265,7 +266,7 @@ void openEpubFile(
 
 class BookListTypeWidget extends StatelessWidget {
   final String title;
-  final List<BookDataModel> list;
+  final List<CardModel> list;
   final String requestType;
 
   BookListTypeWidget({required this.title, required this.list, required this.requestType});
@@ -306,7 +307,7 @@ class ExploreWidget extends StatelessWidget {
 }
 
 class BookDesign extends StatelessWidget {
-  final BookDataModel data;
+  final CardModel data;
   final double? width;
   final int index;
   final bool? isShowRating;
@@ -365,7 +366,7 @@ class BookDesign extends StatelessWidget {
                       child: CachedImageWidget(
                         height: 150,
                         width: 100,
-                        url: data.img,
+                        url: formatImageUrl(data.image.validate()),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -390,7 +391,7 @@ class BookDesign extends StatelessWidget {
 }
 
 class BookDesignSecond extends StatelessWidget {
-  final BookDataModel data;
+  final CardModel data;
   final double? width;
   final int index;
   final bool? isShowRating;
@@ -427,7 +428,7 @@ class BookDesignSecond extends StatelessWidget {
                     decoration: boxDecorationWithRoundedCorners(borderRadius: radius(10)),
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     margin: EdgeInsets.only(bottom: 16),
-                    child: CachedImageWidget(width: 100, height: 150, url: data.img, fit: BoxFit.fill),
+                    child: CachedImageWidget(width: 100, height: 150, url: data.image.validate(), fit: BoxFit.fill),
                   ),
                 ],
               ),

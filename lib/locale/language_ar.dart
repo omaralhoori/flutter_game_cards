@@ -12,6 +12,8 @@ class LanguageAr extends BaseLanguage {
 
   @override
   String get titleAccount => "حساب";
+  @override
+  String get avlblSoon => "سيتوفر قريبا";
 
   @override
   String get msgNoInternet => "أنت غير متصل بالإنترنت";

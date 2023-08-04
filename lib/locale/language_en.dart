@@ -12,6 +12,8 @@ class LanguageEn extends BaseLanguage {
 
   @override
   String get titleAccount => "Account";
+  @override
+  String get avlblSoon => "Available Soon";
 
   @override
   String get msgNoInternet => "You are not connected to Internet";

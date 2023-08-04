@@ -7,6 +7,7 @@ import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/bookDescription/book_description_repository.dart';
 import 'package:bookkart_flutter/screens/dashboard/component/all_sub_category_component.dart';
 import 'package:bookkart_flutter/screens/dashboard/component/book_widget.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/utils/common_base.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
@@ -21,13 +22,14 @@ class ViewAllBooksScreen extends StatefulWidget {
   final String? requestType;
   final bool isCategoryBook;
   final bool showSecondDesign;
-
+  final String? subcategoryId;
   @override
   _ViewAllBooksScreenState createState() => _ViewAllBooksScreenState();
 
   ViewAllBooksScreen({
     required this.isCategoryBook,
     required this.categoryName,
+    this.subcategoryId,
     this.categoryId = "",
     this.title = "",
     this.requestType,
@@ -36,8 +38,8 @@ class ViewAllBooksScreen extends StatefulWidget {
 }
 
 class _ViewAllBooksScreenState extends State<ViewAllBooksScreen> {
-  Future<List<BookDataModel>>? future;
-  List<BookDataModel> bookList = [];
+  Future<List<CardModel>>? future;
+  List<CardModel> cardList = [];
 
   bool isLastPage = false;
 
@@ -51,7 +53,8 @@ class _ViewAllBooksScreenState extends State<ViewAllBooksScreen> {
 
   Future<void> init() async {
     Map<String, dynamic> request = {
-      "category": [widget.categoryId],
+      "category": widget.categoryId,
+      "subcategory": widget.subcategoryId,
       'product_per_page': BOOKS_PER_PAGE
     };
 
@@ -60,7 +63,7 @@ class _ViewAllBooksScreenState extends State<ViewAllBooksScreen> {
       request: request,
       page: page,
       requestType: widget.requestType,
-      services: bookList,
+      services: cardList,
       lastPageCallBack: (p0) {
         return isLastPage = p0;
       },
@@ -68,11 +71,11 @@ class _ViewAllBooksScreenState extends State<ViewAllBooksScreen> {
   }
 
   void onNextPage() {
-    if (!isLastPage) {
-      page++;
-      init();
-      setState(() {});
-    }
+    // if (!isLastPage) {
+    //   page++;
+    //   init();
+    //   setState(() {});
+    // }
   }
 
   @override
@@ -80,7 +83,7 @@ class _ViewAllBooksScreenState extends State<ViewAllBooksScreen> {
     return Scaffold(
       appBar: appBarWidget(widget.categoryName.replaceAll('&amp;', '&').validate(value: widget.title.validate())),
       body: NoInternetFound(
-        child: SnapHelperWidget<List<BookDataModel>>(
+        child: SnapHelperWidget<List<CardModel>>(
           future: future,
           loadingWidget: AppLoader(),
           errorWidget: BackgroundComponent(text: locale.lblNoDataFound, image: img_no_data_found, showLoadingWhileNotLoading: true),
@@ -97,20 +100,20 @@ class _ViewAllBooksScreenState extends State<ViewAllBooksScreen> {
               padding: EdgeInsets.only(bottom: 16),
               onNextPage: onNextPage,
               children: [
-                if (widget.isCategoryBook) AllSubCategoryComponent(categoryId: widget.categoryId.validate()),
+                if (widget.isCategoryBook && widget.subcategoryId == null) AllSubCategoryComponent(categoryId: widget.categoryId.validate()),
                 AnimatedWrap(
                   itemCount: snap.length,
                   runSpacing: 16,
                   listAnimationType: ListAnimationType.Scale,
                   itemBuilder: (_, index) {
-                    BookDataModel bookData = bookList[index];
+                    CardModel cardData = cardList[index];
                     return OpenBookDescriptionOnTap(
-                      bookId: bookList[index].id.toString(),
+                      bookId: cardList[index].id.toString(),
                       currentIndex: index,
                       child: BookWidget(
                         showSecondDesign: widget.showSecondDesign,
                         index: index,
-                        newBookData: bookData,
+                        newBookData: cardData,
                         width: context.width() / 2 - 0,
                         isShowRating: true,
                       ),

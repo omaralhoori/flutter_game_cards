@@ -186,5 +186,6 @@ Future<String> getBookFilePath(String? bookId, String url, {isSampleFile = false
 
 String formatImageUrl(String src){
   if (src.startsWith('http')) return src;
+  if (src == '') return src;
   return DOMAIN_URL + src;
 }

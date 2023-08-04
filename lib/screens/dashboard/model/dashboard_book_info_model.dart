@@ -1,3 +1,4 @@
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class DashboardResponse {
@@ -99,7 +100,7 @@ class Category {
   String? catName;
   String? categoryNicename;
   int? categoryParent;
-  List<BookDataModel>? product;
+  List<CardModel>? product;
   String? image;
 
   Category(
@@ -140,9 +141,9 @@ class Category {
     categoryNicename = json['category_nicename'];
     categoryParent = json['category_parent'];
     if (json['product'] != null) {
-      product = <BookDataModel>[];
+      product = <CardModel>[];
       json['product'].forEach((v) {
-        product!.add(new BookDataModel.fromJson(v));
+        //product!.add(new BookDataModel.fromJson(v));
       });
     }
     image = json['image'];
@@ -167,7 +168,7 @@ class Category {
     data['category_nicename'] = this.categoryNicename;
     data['category_parent'] = this.categoryParent;
     if (this.product != null) {
-      data['product'] = this.product!.map((v) => v.toJson()).toList();
+     // data['product'] = this.product!.map((v) => v.toJson()).toList();
     }
     data['image'] = this.image;
     return data;

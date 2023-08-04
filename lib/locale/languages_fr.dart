@@ -12,7 +12,8 @@ class LanguageFr extends BaseLanguage {
 
   @override
   String get titleAccount => "Compte";
-
+@override
+  String get avlblSoon => "Available Soon";
   @override
   String get msgNoInternet => "Vous n'êtes pas connecté à Internet";
 

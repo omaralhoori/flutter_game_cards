@@ -3,7 +3,7 @@ class CategoriesListResponse {
   int? count;
   String? description;
   String? display;
-  int? id;
+  String? id;
   Image? image;
   int? menuOrder;
   String? name;
@@ -17,6 +17,7 @@ class CategoriesListResponse {
       image: json['image'] != null ? Image.fromJson({"src": json['image']}) : null,
       name: json['item_group_name'],
       slug: json['name'],
+      id: json['name'],
     );
   }
 

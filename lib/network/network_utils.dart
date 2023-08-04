@@ -79,7 +79,11 @@ class APICall {
     String url = this.getOAuthURL("POST", endPoint);
     log("URL $url");
 
-    Map<String, String> headers = {HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8', HttpHeaders.cacheControlHeader: 'no-cache'};
+    Map<String, String> headers = {
+      HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8', 
+      HttpHeaders.cacheControlHeader: 'no-cache',
+       'Authorization':'token ${appStore.token}'
+      };
 
     if (requireToken) {
       // TODO : WITH AUTHORIZE REQUEST

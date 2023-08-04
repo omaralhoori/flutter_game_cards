@@ -5,6 +5,7 @@ import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/author/author_repository.dart';
 import 'package:bookkart_flutter/screens/author/model/author_list_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/component/book_widget.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/utils/common_base.dart';
 import 'package:bookkart_flutter/utils/images.dart';
@@ -23,7 +24,7 @@ class AuthorDetails extends StatefulWidget {
 }
 
 class _AuthorDetailsState extends State<AuthorDetails> {
-  Future<List<BookDataModel>>? future;
+  Future<List<CardModel>>? future;
 
   List<BookDataModel> bookInfoList = [];
 
@@ -39,14 +40,14 @@ class _AuthorDetailsState extends State<AuthorDetails> {
   }
 
   void init() {
-    future = getAuthorBookListRestApi(
-      page: page,
-      id: widget.authorDetails.id,
-      services: bookInfoList,
-      lastPageCallBack: (p0) {
-        return isLastPage = p0;
-      },
-    );
+    // future = getAuthorBookListRestApi(
+    //   page: page,
+    //   id: widget.authorDetails.id,
+    //   services: bookInfoList,
+    //   lastPageCallBack: (p0) {
+    //     return isLastPage = p0;
+    //   },
+    // );
   }
 
   void onNextPage() {
@@ -77,7 +78,7 @@ class _AuthorDetailsState extends State<AuthorDetails> {
           onNextPage: onNextPage,
           children: [
             AuthorDetailsHeaderComponent(authorDetails: widget.authorDetails),
-            SnapHelperWidget<List<BookDataModel>>(
+            SnapHelperWidget<List<CardModel>>(
               future: future,
               loadingWidget: AppLoader(),
               errorWidget: BackgroundComponent(text: locale.lblNoDataFound, image: img_no_data_found, showLoadingWhileNotLoading: true),

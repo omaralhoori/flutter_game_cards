@@ -1,6 +1,7 @@
 import 'package:bookkart_flutter/components/background_component.dart';
 import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/dashboard/component/book_widget.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/utils/common_base.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class SearchListComponent extends StatelessWidget {
-  final List<BookDataModel> itemList;
+  final List<CardModel> itemList;
 
   SearchListComponent({required this.itemList});
 

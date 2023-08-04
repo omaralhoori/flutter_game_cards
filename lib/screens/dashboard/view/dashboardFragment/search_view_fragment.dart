@@ -5,6 +5,7 @@ import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/bookDescription/book_description_repository.dart';
 import 'package:bookkart_flutter/screens/dashboard/component/search_history_component.dart';
 import 'package:bookkart_flutter/screens/dashboard/component/search_list_component.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/utils/common_base.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
@@ -23,7 +24,7 @@ class SearchViewFragment extends StatefulWidget {
 class _SearchViewFragmentState extends State<SearchViewFragment> {
   Future<List<BookDataModel>>? future;
 
-  List<BookDataModel> bookList = [];
+  List<CardModel> bookList = [];
   List<String> searchHistory = [];
 
   SpeechToText speech = SpeechToText();
@@ -79,7 +80,7 @@ class _SearchViewFragmentState extends State<SearchViewFragment> {
     }
 
     // ONE TIME SAVE HISTORY FUNCTION
-    void saveHistory(List<BookDataModel> value) {
+    void saveHistory(List<CardModel> value) {
       String oldValue = getStringAsync(SEARCH_TEXT);
       if (!oldValue.contains(searchQuery)) setValue(SEARCH_TEXT, oldValue + searchQuery + ",");
 

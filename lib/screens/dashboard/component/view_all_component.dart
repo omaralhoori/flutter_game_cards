@@ -1,11 +1,12 @@
 import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/bookDescription/view/list_view_all_books_screen.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class SeeAllButtonComponent extends StatelessWidget {
-  final List<BookDataModel> yourBooks;
+  final List<CardModel> yourBooks;
 
   final String? requestType;
   final String title;

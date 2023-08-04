@@ -12,7 +12,8 @@ class LanguageHi extends BaseLanguage {
 
   @override
   String get titleAccount => "खाता";
-
+@override
+  String get avlblSoon => "Available Soon";
   @override
   String get msgNoInternet => "आप इंटरनेट से जुड़े नहीं हैं";
 

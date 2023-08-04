@@ -82,26 +82,26 @@ class _BookStoreViewFragmentState extends State<BookStoreViewFragment> {
                         16.height,
                         ExploreWidget(list: snap.newest.validate(), header: header),
                         CategoryWiseBookComponent(categoryList: snap.category.validate()),
-                        BookListTypeWidget(
-                          title: locale.headerNewestBookTitle,
-                          list: snap.newest.validate(),
-                          requestType: REQUEST_TYPE_NEWEST,
-                        ),
-                        BookListTypeWidget(
-                          title: locale.headerFeaturedBookTitle,
-                          list: snap.featured.validate(),
-                          requestType: REQUEST_TYPE_PRODUCT_VISIBILITY,
-                        ),
-                        BookListTypeWidget(
-                          title: locale.booksForYou,
-                          list: snap.suggestedForYou.validate(),
-                          requestType: REQUEST_TYPE_SUGGESTED_FOR_YOU,
-                        ),
-                        BookListTypeWidget(
-                          title: locale.youMayLike,
-                          list: snap.youMayLike.validate(),
-                          requestType: REQUEST_TYPE_YOU_MAY_LIKE,
-                        ),
+                        // BookListTypeWidget(
+                        //   title: locale.headerNewestBookTitle,
+                        //   list: snap.newest.validate(),
+                        //   requestType: REQUEST_TYPE_NEWEST,
+                        // ),
+                        // BookListTypeWidget(
+                        //   title: locale.headerFeaturedBookTitle,
+                        //   list: snap.featured.validate(),
+                        //   requestType: REQUEST_TYPE_PRODUCT_VISIBILITY,
+                        // ),
+                        // BookListTypeWidget(
+                        //   title: locale.booksForYou,
+                        //   list: snap.suggestedForYou.validate(),
+                        //   requestType: REQUEST_TYPE_SUGGESTED_FOR_YOU,
+                        // ),
+                        // BookListTypeWidget(
+                        //   title: locale.youMayLike,
+                        //   list: snap.youMayLike.validate(),
+                        //   requestType: REQUEST_TYPE_YOU_MAY_LIKE,
+                        // ),
                       ],
                     );
                   },
