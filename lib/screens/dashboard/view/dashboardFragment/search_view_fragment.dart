@@ -95,7 +95,7 @@ class _SearchViewFragmentState extends State<SearchViewFragment> {
       services: bookList,
       page: page,
       request: {
-        'text': searchQuery,
+        'search': searchQuery,
         'product_per_page': BOOKS_PER_PAGE,
         "page": page,
       },
