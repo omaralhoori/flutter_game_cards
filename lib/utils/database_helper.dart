@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:bookkart_flutter/screens/bookView/model/downloaded_book_model.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/offline_book_list_model.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:path/path.dart';
@@ -40,6 +41,40 @@ class DatabaseHelper {
       " TEXT " +
       ")";
 
+  static const String CARD_TABLE_NAME = "card_table";
+  static const String CARD_COLUMN_NAME_ID = "id";
+  static const String CARD_COLUMN_NAME_CARD_ID = "name";
+  static const String CARD_COLUMN_NAME_CARD_NAME = "item_name";
+  static const String CARD_COLUMN_NAME_CARD_CATEGORY = "item_group";
+  static const String CARD_COLUMN_NAME_CARD_SUBCATEGORY = "brand";
+  static const String CARD_COLUMN_NAME_CARD_IMAGE = "image";
+  static const String CARD_COLUMN_NAME_CARD_PRICE = "price_list_rate";
+  static const String CARD_COLUMN_NAME_CARD_CURRENCY = "currency";
+  static const String CARD_COLUMN_NAME_CARD_QTY = "projected_qty";
+
+  static const String CARD_SQL_CREATE_ENTRIES = "CREATE TABLE IF NOT EXISTS " +
+      CARD_TABLE_NAME +
+      " (" +
+      CARD_COLUMN_NAME_ID +
+      " INTEGER PRIMARY KEY," +
+      CARD_COLUMN_NAME_CARD_ID +
+      " TEXT, " +
+      CARD_COLUMN_NAME_CARD_NAME +
+      " TEXT, " +
+      CARD_COLUMN_NAME_CARD_CATEGORY +
+      " TEXT, " +
+      CARD_COLUMN_NAME_CARD_SUBCATEGORY +
+      " TEXT, " +
+      CARD_COLUMN_NAME_CARD_IMAGE +
+      " TEXT, " +
+      CARD_COLUMN_NAME_CARD_PRICE +
+      " TEXT, " +
+      CARD_COLUMN_NAME_CARD_CURRENCY +
+      " TEXT, " +
+      CARD_COLUMN_NAME_CARD_QTY +
+      " TEXT " +
+      ")";
+
   DatabaseHelper._privateConstructor();
 
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -66,6 +101,7 @@ class DatabaseHelper {
 
   Future<void> _onCreate(Database db, int version) async {
     await db.execute(SQL_CREATE_ENTRIES);
+    await db.execute(CARD_SQL_CREATE_ENTRIES);
   }
 
   Future<int> insert(DownloadedBook book) async {
@@ -74,7 +110,30 @@ class DatabaseHelper {
     log('--- FILE WAS ADDEND TO LIBRARY   ---');
     return await db!.insert(TABLE_NAME, book.toJson(), conflictAlgorithm: ConflictAlgorithm.replace);
   }
+  Future<int> insertCard(CardModel card) async {
+    Database? db = await (instance.database);
+    log('insert data' + card.toJson().toString());
+    log('--- FILE WAS ADDEND TO LIBRARY   ---');
+    return await db!.insert(CARD_TABLE_NAME, card.toJson(), conflictAlgorithm: ConflictAlgorithm.replace);
+  }
 
+  Future<List<CardModel>> getCards() async {
+    Database? db = await (instance.database);
+    List<Map<String, dynamic>> list = await db!.query(
+      CARD_TABLE_NAME,
+    );
+    List<CardModel> cards = [];
+    for (var item in list){
+     CardModel card = cards.firstWhere((element) => element.id == item['name'], orElse: () {
+       CardModel card = CardModel.fromJson(item);
+       cards.add(card);
+        return card;
+     },);
+     card.qty +=1 ;
+     print(card.price);
+    }
+    return cards;
+  }
   Future<List<OfflineBookList>?> queryAllRows(userId) async {
     Database? db = await (instance.database);
     List<Map<String, dynamic>> list = await db!.query(
@@ -143,5 +202,14 @@ class DatabaseHelper {
   Future<int> delete(String path) async {
     Database? db = await (instance.database);
     return await db!.delete(TABLE_NAME, where: '$COLUMN_NAME_FILE_PATH = ?', whereArgs: [path]);
+  }
+
+  Future<void> removeCard(String cardId) async {
+    Database? db = await (instance.database);
+    return await db!.execute("DELETE FROM $CARD_TABLE_NAME WHERE $CARD_COLUMN_NAME_ID=(SELECT MIN($CARD_COLUMN_NAME_ID) FROM $CARD_TABLE_NAME WHERE $CARD_COLUMN_NAME_CARD_ID='$cardId')");
+  }
+  Future<void> removeAllCard(String cardId) async {
+    Database? db = await (instance.database);
+    return await db!.execute("DELETE FROM $CARD_TABLE_NAME WHERE $CARD_COLUMN_NAME_CARD_ID='$cardId'");
   }
 }

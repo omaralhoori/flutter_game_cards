@@ -1,5 +1,6 @@
 import 'package:bookkart_flutter/configs.dart';
 import 'package:bookkart_flutter/main.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/screens/transaction/services/flutter_wave_services.dart';
 import 'package:bookkart_flutter/screens/transaction/services/web_payment_services.dart';
@@ -10,7 +11,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class PaymentSheetComponent extends StatefulWidget {
-  final BookDataModel? bookInfo;
+  final CardModel? bookInfo;
   final bool isSingleItem;
 
   PaymentSheetComponent({this.bookInfo, required this.isSingleItem});
@@ -151,7 +152,7 @@ class PaymentSheetComponentState extends State<PaymentSheetComponent> {
                           } else {
                             finish(context);
                             if (widget.isSingleItem) {
-                              webPayment.singleOrder(bookId: widget.bookInfo!.id.validate().toInt());
+                              webPayment.singleOrder(bookId: widget.bookInfo!.id.validate());
                             } else {
                               webPayment.placeOrder(context);
                             }

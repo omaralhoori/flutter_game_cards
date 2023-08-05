@@ -5,6 +5,7 @@ import 'package:bookkart_flutter/network/network_utils.dart';
 import 'package:bookkart_flutter/screens/auth/view/sign_in_screen.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/my_cart_model.dart';
 import 'package:bookkart_flutter/screens/bookView/view/web_view_screen.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/transaction/model/line_items_model.dart';
 import 'package:bookkart_flutter/screens/transaction/transaction_repository.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
@@ -22,8 +23,8 @@ class WebPayment {
   Future placeOrder(BuildContext context) async {
     if (!appStore.isLoggedIn) SignInScreen().launch(getContext);
 
-    for (MyCartResponse myCart in cartStore.cartList) {
-      lineItems.add(LineItemsRequest(productId: myCart.proId, quantity: myCart.quantity));
+    for (CardModel myCart in cartStore.cartList) {
+      lineItems.add(LineItemsRequest(productId: myCart.id, quantity: myCart.projectedQty.validate().toString()));
     }
 
     List<Map> lineItemJson = [];
@@ -82,7 +83,7 @@ class WebPayment {
     });
   }
 
-  Future singleOrder({required int bookId}) async {
+  Future singleOrder({required String bookId}) async {
     String currency = getStringAsync(CURRENCY_NAME);
 
     Map<String, dynamic> request = {

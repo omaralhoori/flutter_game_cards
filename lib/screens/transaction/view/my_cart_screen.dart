@@ -2,6 +2,7 @@ import 'package:bookkart_flutter/components/app_loader.dart';
 import 'package:bookkart_flutter/components/background_component.dart';
 import 'package:bookkart_flutter/components/no_internet_component.dart';
 import 'package:bookkart_flutter/main.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/screens/transaction/component/cart_component.dart';
 import 'package:bookkart_flutter/screens/transaction/component/payment_sheet_component.dart';
@@ -14,9 +15,10 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class MyCartScreen extends StatefulWidget {
-  final BookDataModel? bookInfo;
+  final CardModel? bookInfo;
+  final bool showBack;
 
-  MyCartScreen({this.bookInfo, Key? key}) : super(key: key);
+  MyCartScreen({this.bookInfo,this.showBack=true, Key? key}) : super(key: key);
 
   @override
   State<MyCartScreen> createState() => _MyCartScreenState();
@@ -63,7 +65,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget(locale.lblMyCart),
+      appBar: appBarWidget(locale.lblMyCart, showBack: widget.showBack, center: !widget.showBack),
       body: NoInternetFound(
         child: Observer(
           builder: (context) {
@@ -77,7 +79,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                   emptyWidget: BackgroundComponent(text: locale.lblEmptyCart, showLoadingWhileNotLoading: cartStore.cartList.isEmpty).center(),
                   itemBuilder: (context, index) {
                     return OpenBookDescriptionOnTap(
-                      bookId: cartStore.cartList[index].proId.toString(),
+                      bookId: cartStore.cartList[index].id,
                       currentIndex: index,
                       child: CartComponent(index: index).paddingBottom(16),
                     );

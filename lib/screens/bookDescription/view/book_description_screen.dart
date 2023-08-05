@@ -10,6 +10,7 @@ import 'package:bookkart_flutter/screens/bookDescription/component/books_categor
 import 'package:bookkart_flutter/screens/bookDescription/component/description_component.dart';
 import 'package:bookkart_flutter/screens/bookDescription/component/download_file_component.dart';
 import 'package:bookkart_flutter/screens/bookDescription/component/get_author_component.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/screens/transaction/view/my_cart_screen.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
@@ -30,7 +31,7 @@ class BookDescriptionScreen extends StatefulWidget {
 }
 
 class _BookDescriptionScreenState extends State<BookDescriptionScreen> {
-  Future<BookDataModel> future = Future(() => BookDataModel());
+  late Future<CardModel> future;
 
   @override
   void initState() {
@@ -55,10 +56,10 @@ class _BookDescriptionScreenState extends State<BookDescriptionScreen> {
   }
 
   void init() async {
-    future = getBookDetailsRestWithLoading(context, request: {'product_id': widget.bookId});
+    future = getBookDetailsRestWithLoading(context, request: {'item_id': widget.bookId});
   }
 
-  AppBar _buildAppBarWidget(BookDataModel snap, BuildContext context) {
+  AppBar _buildAppBarWidget(CardModel snap, BuildContext context) {
     return appBarWidget(
       snap.name.validate(),
       titleTextStyle: boldTextStyle(),
@@ -99,7 +100,7 @@ class _BookDescriptionScreenState extends State<BookDescriptionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: NoInternetFound(
-        child: SnapHelperWidget<BookDataModel>(
+        child: SnapHelperWidget<CardModel>(
           future: future,
           loadingWidget: AppLoader(isObserver: false, loadingVisible: true),
           defaultErrorMessage: locale.lblNoDataFound,

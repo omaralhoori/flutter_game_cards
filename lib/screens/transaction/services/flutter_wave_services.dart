@@ -1,6 +1,7 @@
 import 'package:bookkart_flutter/configs.dart';
 import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/network/network_utils.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/screens/transaction/transaction_repository.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
@@ -21,7 +22,7 @@ class FlutterWaveServices {
   FlutterWaveServices({required this.context});
 
   void payWithFlutterWave({
-    required BookDataModel bookData,
+    required CardModel bookData,
     required num totalAmount,
     required String flutterWavePublicKey,
     required String flutterWaveSecretKey,

@@ -1,7 +1,9 @@
 import 'package:bookkart_flutter/components/cached_image_widget.dart';
 import 'package:bookkart_flutter/main.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/utils/common_base.dart';
 import 'package:bookkart_flutter/utils/extensions/int_extensions.dart';
+import 'package:bookkart_flutter/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -13,6 +15,7 @@ class CartComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double totalPrice = cartStore.cartList[index].price.validate() * cartStore.cartList[index].qty;
     return Observer(
       builder: (context) {
         return Row(
@@ -36,7 +39,7 @@ class CartComponent extends StatelessWidget {
                   child: CachedImageWidget(
                     height: 95,
                     width: 75,
-                    url: cartStore.cartList[index].thumbnail.validate(),
+                    url: formatImageUrl(cartStore.cartList[index].image.validate()),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -47,8 +50,9 @@ class CartComponent extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Marquee(child: Text(cartStore.cartList[index].name.validate(), style: boldTextStyle(), maxLines: 2)),
-                Text(cartStore.cartList[index].stockStatus.validate(), style: primaryTextStyle(color: Colors.green)),
-                Text(cartStore.cartList[index].price.toDouble().toString().getFormattedPrice(), style: boldTextStyle()),
+                Text(totalPrice.toString().getFormattedPrice(), style: boldTextStyle()),
+                16.height,
+                IncreaseDecreaseButtons(card:cartStore.cartList[index])
               ],
             ).expand(),
             16.width,
@@ -65,7 +69,7 @@ class CartComponent extends StatelessWidget {
                   context,
                   dialogType: DialogType.DELETE,
                   onAccept: (e) async {
-                    await cartStore.removeFromCart(context, removeProductId: cartStore.productId[index]);
+                    await cartStore.removeAll(context, removeProductId: cartStore.cartList[index].id);
                   },
                 );
               },
@@ -74,5 +78,45 @@ class CartComponent extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+
+class IncreaseDecreaseButtons extends StatefulWidget {
+  final CardModel card;
+  const IncreaseDecreaseButtons({super.key, required this.card});
+
+  @override
+  State<IncreaseDecreaseButtons> createState() => _IncreaseDecreaseButtonsState();
+}
+
+class _IncreaseDecreaseButtonsState extends State<IncreaseDecreaseButtons> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              child: Container(
+                child: Icon(Icons.remove, color: context.primaryColor),
+                padding: EdgeInsets.all(4),
+                decoration: BoxDecoration(color: context.primaryColor.withOpacity(0.2), borderRadius: radius(8)),
+              ),
+              onTap: () {
+                cartStore.removeFromCart(context, removeProductId: widget.card.id);
+              },),
+      16.width,  
+    Text(widget.card.qty.validate().toString(), style: primaryTextStyle(color: Colors.green)),
+      16.width,  
+      GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              child: Container(
+                child: Icon(Icons.add, color: context.primaryColor),
+                padding: EdgeInsets.all(4),
+                decoration: BoxDecoration(color: context.primaryColor.withOpacity(0.2), borderRadius: radius(8)),
+              ),onTap:(){
+                cartStore.increaseCard(widget.card);
+              })
+
+    ],);
   }
 }

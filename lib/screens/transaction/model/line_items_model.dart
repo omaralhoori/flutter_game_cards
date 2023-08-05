@@ -6,7 +6,7 @@ class LineItemModel {
 }
 
 class LineItemsRequest {
-  int? productId;
+  String? productId;
   String? quantity;
 
   LineItemsRequest({this.productId, this.quantity});

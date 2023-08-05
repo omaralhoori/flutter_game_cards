@@ -13,13 +13,13 @@ mixin _$CartStore on _CartStore, Store {
       Atom(name: '_CartStore.cartList', context: context);
 
   @override
-  List<MyCartResponse> get cartList {
+  List<CardModel> get cartList {
     _$cartListAtom.reportRead();
     return super.cartList;
   }
 
   @override
-  set cartList(List<MyCartResponse> value) {
+  set cartList(List<CardModel> value) {
     _$cartListAtom.reportWrite(value, super.cartList, () {
       super.cartList = value;
     });
@@ -92,7 +92,7 @@ mixin _$CartStore on _CartStore, Store {
       AsyncAction('_CartStore.removeItemFromCart', context: context);
 
   @override
-  Future<void> removeItemFromCart({required int bookId}) {
+  Future<void> removeItemFromCart({required String bookId}) {
     return _$removeItemFromCartAsyncAction
         .run(() => super.removeItemFromCart(bookId: bookId));
   }
@@ -101,7 +101,7 @@ mixin _$CartStore on _CartStore, Store {
       AsyncAction('_CartStore.addItemFromCart', context: context);
 
   @override
-  Future<void> addItemFromCart({required int bookId}) {
+  Future<void> addItemFromCart({required String bookId}) {
     return _$addItemFromCartAsyncAction
         .run(() => super.addItemFromCart(bookId: bookId));
   }

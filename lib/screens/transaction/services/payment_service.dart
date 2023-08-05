@@ -1,5 +1,6 @@
 import 'package:bookkart_flutter/configs.dart';
 import 'package:bookkart_flutter/main.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/screens/transaction/services/flutter_wave_services.dart';
 import 'package:bookkart_flutter/screens/transaction/services/web_payment_services.dart';
@@ -11,7 +12,7 @@ enum PaymentType { STRIPE, FLUTTER_WAVE, NATIVE_PAYMENT, RAZOR_PAY }
 class PaymentService {
   final BuildContext context;
   final String bookId;
-  BookDataModel? bookInfo;
+  CardModel? bookInfo;
 
   PaymentService({required this.context, required this.bookId, required this.bookInfo});
 
@@ -23,7 +24,7 @@ class PaymentService {
       finish(context);
 
       if (isSingleItem) {
-        webPayment.singleOrder(bookId: bookId.toInt());
+        webPayment.singleOrder(bookId: bookId);
       } else {
         webPayment.placeOrder(context);
       }

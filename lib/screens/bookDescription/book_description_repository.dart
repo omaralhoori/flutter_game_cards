@@ -30,11 +30,11 @@ Future<PaidBookResponse> getPaidBookFileListRestApi(Map<String, dynamic> request
   }
 }
 
-Future<BookDataModel> getBookDetailsRestWithLoading(BuildContext context, {required Map<String, dynamic> request}) async {
+Future<CardModel> getBookDetailsRestWithLoading(BuildContext context, {required Map<String, dynamic> request}) async {
   log('GET-BOOK-DETAILS-REST-API');
 
   appStore.setLoading(true);
-  BookDataModel res = await getBookDescriptionData(context, request).then((value) {
+  CardModel res = await getBookDescriptionData(context, request).then((value) {
     appStore.setLoading(false);
     return value;
   }).catchError((e) {
@@ -58,21 +58,16 @@ Future<BookDataModel> getBookDetailsRestWithLoading(BuildContext context, {requi
 //   return res;
 // }
 
-Future<BookDataModel> getBookDescriptionData(BuildContext context, Map<String, dynamic> request) async {
-  print("sssssssssssssssssssssssssssssssss");
-  print(request);
+Future<CardModel> getBookDescriptionData(BuildContext context, Map<String, dynamic> request) async {
   //Iterable it = await responseHandler(await APICall().postMethod("iqonic-api/api/v1/woocommerce/get-product-details", request, requireToken: appStore.isLoggedIn), req: request, isBookDetails: true);
-  final String response = 
-          await rootBundle.loadString('assets/data/product.json');
-  final resData = await json.decode(response);
-  Iterable it = resData;
-  print(it);
-  BookDataModel res = BookDataModel.fromJson(it.first);
+  // final String response = 
+  //         await rootBundle.loadString('assets/data/product.json');
+  // final resData = await json.decode(response);
+  final response = await responseHandler(await APICall().postMethod("erpnext.api.data.get_item", request));
 
-  if (res.type == VARIABLE || res.type == GROUPED || res.type == EXTERNAL) {
-    toast(locale.lblBookTypeNotSupported);
-    finish(getContext);
-  }
+  CardModel res = CardModel.fromJson(response['message'].first);
+
+
   return res;
 }
 

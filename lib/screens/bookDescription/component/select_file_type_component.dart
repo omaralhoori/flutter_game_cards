@@ -1,4 +1,5 @@
 import 'package:bookkart_flutter/main.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/screens/offline/view/download_files_screen.dart';
 import 'package:bookkart_flutter/utils/colors.dart';
@@ -7,7 +8,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 class SelectFileType extends StatelessWidget {
   final List<DownloadModel> downloadFile;
-  final BookDataModel bookingData;
+  final CardModel bookingData;
   final bool? isSampleFile;
 
   SelectFileType({required this.downloadFile, required this.bookingData, this.isSampleFile});
@@ -42,19 +43,20 @@ class SelectFileType extends StatelessWidget {
             if (downloadFile.isNotEmpty)
               Container(
                 margin: EdgeInsets.only(top: 20),
-                child: AnimatedListView(
-                  itemCount: downloadFile.length,
-                  shrinkWrap: true,
-                  physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return ButtonForDownloadFileComponent(
-                      downloads: downloadFile[index],
-                      isFromAsset: false,
-                      isSampleFile: isSampleFile ?? false,
-                      bookData: bookingData,
-                    );
-                  },
-                ),
+                // child: 
+                // AnimatedListView(
+                //   itemCount: downloadFile.length,
+                //   shrinkWrap: true,
+                //   physics: BouncingScrollPhysics(),
+                //   itemBuilder: (context, index) {
+                //     return ButtonForDownloadFileComponent(
+                //       downloads: downloadFile[index],
+                //       isFromAsset: false,
+                //       isSampleFile: isSampleFile ?? false,
+                //       bookData: bookingData,
+                //     );
+                //   },
+                // ),
               ),
           ],
         ),

@@ -1,5 +1,6 @@
 import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/auth/view/sign_in_screen.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/screens/transaction/component/payment_sheet_component.dart';
 import 'package:bookkart_flutter/screens/transaction/view/my_cart_screen.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class ViewFileButton extends StatefulWidget {
-  final BookDataModel bookInfo;
+  final CardModel bookInfo;
   final String bookId;
 
   ViewFileButton({Key? key, required this.bookInfo, required this.bookId}) : super(key: key);
@@ -31,13 +32,13 @@ class _ViewFileButtonState extends State<ViewFileButton> {
       return;
     }
 
-    if ((cartStore.isCartItemPreExist(bookId: widget.bookInfo.id.validate().toInt()))) {
-      await MyCartScreen(bookInfo: widget.bookInfo).launch(context);
-      return;
-    }
+    // if ((cartStore.isCartItemPreExist(bookId: widget.bookInfo.id.validate().toInt()))) {
+    //   await MyCartScreen(bookInfo: widget.bookInfo).launch(context);
+    //   return;
+    // }
 
     appStore.setLoading(true);
-    await cartStore.addToCart(context, bookId: widget.bookId).then((value) {
+    await cartStore.addToCart(context, bookId: widget.bookId, card: widget.bookInfo).then((value) {
       appStore.setLoading(false);
       setState(() {});
     }).catchError((e) {
@@ -47,7 +48,7 @@ class _ViewFileButtonState extends State<ViewFileButton> {
     });
   }
 
-  Future<void> buyNow({required BookDataModel bookInfo}) async {
+  Future<void> buyNow({required CardModel bookInfo}) async {
     if (appStore.isLoggedIn) {
       await showModalBottomSheet(
         context: context,
@@ -63,7 +64,7 @@ class _ViewFileButtonState extends State<ViewFileButton> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.bookInfo.isPurchased.validate() || widget.bookInfo.isFreeBook) return SizedBox(width: context.width());
+    // if (widget.bookInfo.projectedQty == 0) return SizedBox(width: context.width());
 
     return Observer(builder: (_) {
       return Container(
@@ -81,25 +82,25 @@ class _ViewFileButtonState extends State<ViewFileButton> {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(defaultRadius)),
                 child: Text(
-                  (cartStore.cartList.any((element) => element.proId.validate() == int.tryParse(widget.bookId))) ? locale.lblGoToCart : locale.lblAddToCart,
+                  locale.lblAddToCart, //cartStore.cartList.any((element) => element.proId.validate() == int.tryParse(widget.bookId))) ? locale.lblGoToCart : 
                   style: primaryTextStyle(color: white),
                   textAlign: TextAlign.center,
                 ),
               ),
             ),
-            SizedBox(height: 28, child: VerticalDivider(color: Colors.white, thickness: 1.5)),
-            GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onTap: () {
-                buyNow(bookInfo: widget.bookInfo);
-              },
-              child: Container(
-                height: kToolbarHeight,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(defaultRadius)),
-                child: Text(locale.lblBuyNow, style: primaryTextStyle(color: white)),
-              ),
-            ),
+            // SizedBox(height: 28, child: VerticalDivider(color: Colors.white, thickness: 1.5)),
+            // GestureDetector(
+            //   behavior: HitTestBehavior.translucent,
+            //   onTap: () {
+            //     buyNow(bookInfo: widget.bookInfo);
+            //   },
+            //   child: Container(
+            //     height: kToolbarHeight,
+            //     alignment: Alignment.center,
+            //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(defaultRadius)),
+            //     child: Text(locale.lblBuyNow, style: primaryTextStyle(color: white)),
+            //   ),
+            // ),
           ],
         ),
       );

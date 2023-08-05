@@ -28,10 +28,10 @@ class BookDataComponent extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               if (bookData.price.validate().toString().validate().toDouble() != 0.0) Text(bookData.price.validate().toString().getFormattedPrice(), style: boldTextStyle(color: context.primaryColor)),
-              if (!getBoolAsync(HAS_IN_REVIEW) && (bookData.price.validate().toDouble() != 0.0))
-                Text('${(bookData.price != 0.0) ? bookData.price.toString().getFormattedPrice() : 'Free'}', style: boldTextStyle(size: 16, color: (bookData.price != 0.0) ? context.primaryColor : Colors.green))
-              else
-                Text('Free', style: boldTextStyle(color: Colors.green)),
+              // if (!getBoolAsync(HAS_IN_REVIEW) && (bookData.price.validate().toDouble() != 0.0))
+              //   Text('${(bookData.price != 0.0) ? bookData.price.toString().getFormattedPrice() : 'Free'}', style: boldTextStyle(size: 16, color: (bookData.price != 0.0) ? context.primaryColor : Colors.green))
+              // else
+              //   Text('Free', style: boldTextStyle(color: Colors.green)),
             ],
           ),
         8.height,

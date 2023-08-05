@@ -40,39 +40,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return DoublePressBackWidget(
       child: Scaffold(
-        floatingActionButton: Observer(
-          builder: (context) {
-            if (cartStore.cartList.isNotEmpty && appStore.isLoggedIn) {
-              return FloatingActionButton(
-                backgroundColor: context.primaryColor,
-                child: Stack(
-                  alignment: Alignment.topRight,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.shopping_cart_outlined, color: white),
-                      onPressed: () {
-                        (appStore.isLoggedIn) ? MyCartScreen().launch(context) : SignInScreen().launch(context);
-                      },
-                    ),
-                    if (cartStore.cartList.length > 0)
-                      Container(
-                        margin: EdgeInsets.only(right: 10),
-                        decoration: boxDecorationWithRoundedCorners(boxShape: BoxShape.circle, backgroundColor: redColor),
-                        child: Text(cartStore.cartList.length.toString(), style: primaryTextStyle(size: 12, color: white)).paddingAll(4),
-                      ),
-                  ],
-                ),
-                onPressed: () {
-                  MyCartScreen().launch(context);
-                },
-              );
-            }
-            return Offstage();
-          },
-        ),
+        // floatingActionButton: Observer(
+        //   builder: (context) {
+        //     if (cartStore.cartList.isNotEmpty && appStore.isLoggedIn) {
+        //       return FloatingActionButton(
+        //         backgroundColor: context.primaryColor,
+        //         child: Stack(
+        //           alignment: Alignment.topRight,
+        //           children: [
+        //             IconButton(
+        //               icon: Icon(Icons.shopping_cart_outlined, color: white),
+        //               onPressed: () {
+        //                 (appStore.isLoggedIn) ? MyCartScreen().launch(context) : SignInScreen().launch(context);
+        //               },
+        //             ),
+        //             if (cartStore.cartList.length > 0)
+        //               Container(
+        //                 margin: EdgeInsets.only(right: 10),
+        //                 decoration: boxDecorationWithRoundedCorners(boxShape: BoxShape.circle, backgroundColor: redColor),
+        //                 child: Text(cartStore.cartList.length.toString(), style: primaryTextStyle(size: 12, color: white)).paddingAll(4),
+        //               ),
+        //           ],
+        //         ),
+        //         onPressed: () {
+        //           MyCartScreen().launch(context);
+        //         },
+        //       );
+        //     }
+        //     return Offstage();
+        //   },
+        // ),
         body: [
           const CategoriesListFragment(showLargeTitle: false),//BookStoreViewFragment(),
-          MyCartScreen(),//CategoriesListFragment(showLargeTitle: false)(appStore.isLoggedIn && !getBoolAsync(HAS_IN_REVIEW)) ? const MyLibraryViewFragment() : const CategoriesListFragment(showLargeTitle: false),
+          MyCartScreen(showBack: false,),//CategoriesListFragment(showLargeTitle: false)(appStore.isLoggedIn && !getBoolAsync(HAS_IN_REVIEW)) ? const MyLibraryViewFragment() : const CategoriesListFragment(showLargeTitle: false),
           const SearchViewFragment(),
           const SettingScreen(),
         ][currentIndex],
@@ -114,4 +114,5 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
     );
   }
+        //         ),
 }

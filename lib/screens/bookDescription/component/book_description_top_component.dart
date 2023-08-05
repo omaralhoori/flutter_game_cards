@@ -1,12 +1,14 @@
 import 'package:bookkart_flutter/components/cached_image_widget.dart';
 import 'package:bookkart_flutter/screens/bookDescription/component/view_file_button.dart';
+import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
+import 'package:bookkart_flutter/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class BookDescriptionTopComponent extends StatefulWidget {
-  final BookDataModel bookInfo;
+  final CardModel bookInfo;
   final Color? backgroundColor;
   final String bookId;
 
@@ -43,7 +45,7 @@ class _BookDescriptionTopComponentState extends State<BookDescriptionTopComponen
               clipBehavior: Clip.antiAliasWithSaveLayer,
               margin: EdgeInsets.only(bottom: 16),
               decoration: boxDecorationWithRoundedCorners(borderRadius: radius(10)),
-              child: CachedImageWidget(width: 100, height: 140, fit: BoxFit.fill, url: widget.bookInfo.img),
+              child: CachedImageWidget(width: 100, height: 140, fit: BoxFit.fill, url: formatImageUrl(widget.bookInfo.image.validate())),
             ),
           ],
         ),

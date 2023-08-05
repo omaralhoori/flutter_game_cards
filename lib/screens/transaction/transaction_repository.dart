@@ -43,7 +43,7 @@ Future<VerifyTransactionResponse> verifyPayment({required String transactionId, 
 
 Future<bool> createNativeOrder(
   BuildContext context, {
-  required int bookingId,
+  required String bookingId,
   required String paymentMethodName,
   required bool isSingleItem,
   String status = "completed",
@@ -75,8 +75,8 @@ Future<bool> createNativeOrder(
 
     cartStore.cartList.forEach((element) {
       lineItems.add(LineItemsRequest(
-        productId: element.proId,
-        quantity: element.quantity,
+        productId: element.id,
+        quantity: element.projectedQty.validate().toString(),
       ));
     });
 
