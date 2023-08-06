@@ -9,7 +9,8 @@ class LanguageDe extends BaseLanguage {
 
   @override
   String get titleSearch => "Suche";
-
+  @override
+  String get checkoutConfirm => 'Please confirm your purchase';
   @override
   String get titleAccount => "Konto";
 @override

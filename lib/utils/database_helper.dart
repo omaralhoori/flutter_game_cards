@@ -211,4 +211,8 @@ class DatabaseHelper {
     Database? db = await (instance.database);
     return await db!.execute("DELETE FROM $CARD_TABLE_NAME WHERE $CARD_COLUMN_NAME_CARD_ID='$cardId'");
   }
+  Future<void> cleanCart() async {
+    Database? db = await (instance.database);
+    return await db!.execute("DELETE FROM $CARD_TABLE_NAME WHERE 1=1;");
+  }
 }

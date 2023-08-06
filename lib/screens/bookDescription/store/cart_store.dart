@@ -29,10 +29,18 @@ abstract class _CartStore with Store {
   @observable
   String bookId = '';
 
+  @observable
+  double customerBalance = 0;
+
   @action
   Future<void> init() async {
     if (appStore.isLoggedIn) {
       appStore.setLoading(true);
+      await getCustomerBalance().then((value) {
+        if(value['message']['balance'] != null){
+          customerBalance = value['message']['balance'];
+        }
+      });
       await dbHelper.getCards().then((value){
 
         // if (value.validate().length != cartList.length) {
@@ -147,5 +155,27 @@ abstract class _CartStore with Store {
     // }).whenComplete(() {
     //   init();
     // });
+  }
+
+  Future<Map<String, dynamic>> checkoutCart() async {
+    if (this.customerBalance >= this.totalAmount){
+       Map<String, dynamic> request = {
+        "cart_items": this.cartList.map((e) => {"item_id": e.id, "item_qty": e.qty}).toList(),
+        "total_amount": this.totalAmount
+      };
+      final res = await checkoutCartRequest(request);
+      return res['message'];
+    }else{
+      return {
+        "success_key": 0,
+        "error": "You do not have enough balance"
+      };
+    }
+     
+  }
+
+  Future cleanCart() async{
+    await dbHelper.cleanCart();
+    await init();
   }
 }

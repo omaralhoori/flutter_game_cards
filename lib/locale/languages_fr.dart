@@ -9,7 +9,8 @@ class LanguageFr extends BaseLanguage {
 
   @override
   String get titleSearch => "Chercher";
-
+  @override
+  String get checkoutConfirm => 'Please confirm your purchase';
   @override
   String get titleAccount => "Compte";
 @override

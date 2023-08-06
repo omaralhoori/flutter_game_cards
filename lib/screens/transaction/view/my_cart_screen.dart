@@ -26,17 +26,19 @@ class MyCartScreen extends StatefulWidget {
 
 class _MyCartScreenState extends State<MyCartScreen> {
   Future<void> showDialog(BuildContext context) async {
-    if (appStore.paymentMethod != NATIVE) {
-      WebPayment(context: context, bookID: widget.bookInfo!.id.toString()).placeOrder(context);
-    } else {
-      showModalBottomSheet(
-        context: context,
-        backgroundColor: Colors.transparent,
-        builder: (BuildContext _context) {
-          return PaymentSheetComponent(bookInfo: widget.bookInfo, isSingleItem: false);
-        },
-      );
-    }
+    showConfirmDialogCustom(
+                  title: locale.checkoutConfirm,
+                  context,
+                  dialogType: DialogType.CONFIRMATION,
+                  onAccept: (e) async {
+                    final res = await cartStore.checkoutCart();
+                    if (res['success_key'] == 0){
+                      toastLong(res['error']);
+                    }else{
+                      cartStore.cleanCart();
+                    }
+                  },
+                );
   }
 
   @override
@@ -65,7 +67,19 @@ class _MyCartScreenState extends State<MyCartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget(locale.lblMyCart, showBack: widget.showBack, center: !widget.showBack),
+      appBar: appBarWidget(
+        locale.lblMyCart, 
+        titleWidget: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+            Text(locale.lblMyCart, style:primaryTextStyle(size: 20, weight: FontWeight.bold) ,),
+            Text("Balance: " + cartStore.customerBalance.toString(), style: primaryTextStyle(size: 20),)
+          ],),
+        ),
+        showBack: widget.showBack, 
+        center: !widget.showBack),
       body: NoInternetFound(
         child: Observer(
           builder: (context) {

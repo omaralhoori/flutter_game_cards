@@ -9,7 +9,8 @@ class LanguageHi extends BaseLanguage {
 
   @override
   String get titleSearch => "खोज";
-
+  @override
+  String get checkoutConfirm => 'Please confirm your purchase';
   @override
   String get titleAccount => "खाता";
 @override

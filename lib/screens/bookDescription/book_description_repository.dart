@@ -16,6 +16,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
 
+Future<dynamic> checkoutCartRequest(Map<String, dynamic> request) async {
+  log('CHECKOUT');
+  return await responseHandler(await APICall().postMethod('erpnext.api.data.checkout_cart', request, requireToken: true));
+}
+Future<dynamic> getCustomerBalance() async {
+  return await responseHandler(await APICall().getMethod('erpnext.api.data.get_balance', requireToken: true));
+}
 Future<BaseResponseModel> addToCartBook(Map<String, dynamic> request) async {
   log('ADD-TO-CART-BOOK');
   return BaseResponseModel.fromJson(await responseHandler(await APICall().postMethod('iqonic-api/api/v1/cart/add-cart', request, requireToken: true)));

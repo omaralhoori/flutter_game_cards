@@ -758,4 +758,7 @@ class LanguageEn extends BaseLanguage {
 
   @override
   String get alreadyPurchased => "Already Purchased";
+  
+  @override
+  String get checkoutConfirm => 'Please confirm your purchase';
 }

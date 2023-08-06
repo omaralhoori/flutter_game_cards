@@ -333,6 +333,8 @@ abstract class BaseLanguage {
 
   String get avlblSoon;
 
+  String get checkoutConfirm;
+
   String get lblShowMore;
 
   String get lblShowLess;
