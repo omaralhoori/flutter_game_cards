@@ -125,12 +125,11 @@ class DatabaseHelper {
     List<CardModel> cards = [];
     for (var item in list){
      CardModel card = cards.firstWhere((element) => element.id == item['name'], orElse: () {
-       CardModel card = CardModel.fromJson(item);
-       cards.add(card);
-        return card;
+       CardModel _card = CardModel.fromJson(item);
+       cards.add(_card);
+        return _card;
      },);
      card.qty +=1 ;
-     print(card.price);
     }
     return cards;
   }

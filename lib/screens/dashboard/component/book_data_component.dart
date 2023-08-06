@@ -22,8 +22,8 @@ class BookDataComponent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         // if (isShowRating ?? false) DisabledRatingBarWidget(rating: bookData.averageRating.toDouble().ceil(), size: 15),
-        if (bookData.price == null && (isShowPrice ?? true)) Text(locale.avlblSoon, style: boldTextStyle(color: Colors.green)),
-        if (bookData.price != null && (isShowPrice ?? true))
+        if ((bookData.price == null || bookData.projectedQty == 0 )) Text(locale.avlblSoon, style: boldTextStyle(color: Colors.green)),
+        if (bookData.price != null && bookData.projectedQty != 0 && (isShowPrice ?? true))
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [

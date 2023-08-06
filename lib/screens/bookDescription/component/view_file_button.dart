@@ -64,7 +64,7 @@ class _ViewFileButtonState extends State<ViewFileButton> {
 
   @override
   Widget build(BuildContext context) {
-    // if (widget.bookInfo.projectedQty == 0) return SizedBox(width: context.width());
+    if (widget.bookInfo.projectedQty == 0) return SizedBox(width: context.width());
 
     return Observer(builder: (_) {
       return Container(

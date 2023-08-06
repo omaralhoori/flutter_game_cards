@@ -18,9 +18,16 @@ class CardModel{
     category = json['item_group'];
     subcategory = json['brand'];
     image = json['image'];
-    price = json['price_list_rate'] != null ? double.parse(json['price_list_rate']) : null;
+    try{
+price = json['price_list_rate'] != null ? json['price_list_rate']: null;
     currency = json['currency'];
-    projectedQty = json['projected_qty'] != null ? int.tryParse(json['projected_qty']) : 0;
+    projectedQty = json['projected_qty'] != null ? json['projected_qty'].toInt() : 0;
+    }catch(e){
+          price = json['price_list_rate'] != null ? double.parse(json['price_list_rate'].toString()): null;
+          currency = json['currency'];
+          projectedQty = json['projected_qty'] != null ? int.parse(json['projected_qty'].toString()) : 0; 
+    }
+    
   }
   Map<String, dynamic> toJson(){
     return {
