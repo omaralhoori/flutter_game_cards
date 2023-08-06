@@ -71,7 +71,8 @@ class LanguageHi extends BaseLanguage {
 
   @override
   String get youMayLikeDesc => "मैग्ना लेबरिस फुगियाट एड लोरम सिट मोलिट प्रोवेंट।";
-
+ @override
+  String get lblMyOrders => 'My Orders';
   @override
   String get lblAbout => "हमारे बारे में";
 

@@ -1,5 +1,6 @@
 import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/auth/view/sign_in_screen.dart';
+import 'package:bookkart_flutter/screens/bookDescription/view/list_view_all_invoices_screen.dart';
 import 'package:bookkart_flutter/screens/dashboard/view/dashboardFragment/book_view_fragment.dart';
 import 'package:bookkart_flutter/screens/dashboard/view/dashboardFragment/category_list_fragment_screen.dart';
 import 'package:bookkart_flutter/screens/dashboard/view/dashboardFragment/library_view_fragment.dart';
@@ -40,39 +41,40 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return DoublePressBackWidget(
       child: Scaffold(
-        // floatingActionButton: Observer(
-        //   builder: (context) {
-        //     if (cartStore.cartList.isNotEmpty && appStore.isLoggedIn) {
-        //       return FloatingActionButton(
-        //         backgroundColor: context.primaryColor,
-        //         child: Stack(
-        //           alignment: Alignment.topRight,
-        //           children: [
-        //             IconButton(
-        //               icon: Icon(Icons.shopping_cart_outlined, color: white),
-        //               onPressed: () {
-        //                 (appStore.isLoggedIn) ? MyCartScreen().launch(context) : SignInScreen().launch(context);
-        //               },
-        //             ),
-        //             if (cartStore.cartList.length > 0)
-        //               Container(
-        //                 margin: EdgeInsets.only(right: 10),
-        //                 decoration: boxDecorationWithRoundedCorners(boxShape: BoxShape.circle, backgroundColor: redColor),
-        //                 child: Text(cartStore.cartList.length.toString(), style: primaryTextStyle(size: 12, color: white)).paddingAll(4),
-        //               ),
-        //           ],
-        //         ),
-        //         onPressed: () {
-        //           MyCartScreen().launch(context);
-        //         },
-        //       );
-        //     }
-        //     return Offstage();
-        //   },
-        // ),
+        floatingActionButton: Observer(
+          builder: (context) {
+            if (cartStore.cartList.isNotEmpty && appStore.isLoggedIn) {
+              return FloatingActionButton(
+                backgroundColor: context.primaryColor,
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.shopping_cart_outlined, color: white),
+                      onPressed: () {
+                        (appStore.isLoggedIn) ? MyCartScreen().launch(context) : SignInScreen().launch(context);
+                      },
+                    ),
+                    if (cartStore.cartList.length > 0)
+                      Container(
+                        margin: EdgeInsets.only(right: 10),
+                        decoration: boxDecorationWithRoundedCorners(boxShape: BoxShape.circle, backgroundColor: redColor),
+                        child: Text(cartStore.cartList.length.toString(), style: primaryTextStyle(size: 12, color: white)).paddingAll(4),
+                      ),
+                  ],
+                ),
+                onPressed: () {
+                  MyCartScreen().launch(context);
+                },
+              );
+            }
+            return Offstage();
+          },
+        ),
         body: [
           const CategoriesListFragment(showLargeTitle: false),//BookStoreViewFragment(),
-          MyCartScreen(showBack: false,),//CategoriesListFragment(showLargeTitle: false)(appStore.isLoggedIn && !getBoolAsync(HAS_IN_REVIEW)) ? const MyLibraryViewFragment() : const CategoriesListFragment(showLargeTitle: false),
+         // MyCartScreen(showBack: false,),//CategoriesListFragment(showLargeTitle: false)(appStore.isLoggedIn && !getBoolAsync(HAS_IN_REVIEW)) ? const MyLibraryViewFragment() : const CategoriesListFragment(showLargeTitle: false),
+          const AllInvoicesScreen(),
           const SearchViewFragment(),
           const SettingScreen(),
         ][currentIndex],
@@ -90,9 +92,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               label: locale.titleBookStore,
             ),
             NavigationDestination(
-              icon: ic_shopping_cart.iconImage(color: textSecondaryColor),
-              selectedIcon: ic_shopping_cart.iconImage(color: context.primaryColor),
-              label: locale.lblMyCart,
+              icon: ic_order_id.iconImage(color: textSecondaryColor),
+              selectedIcon: ic_order_id.iconImage(color: context.primaryColor),
+              label: locale.lblMyOrders,
             ),
             // NavigationDestination(
             //   icon: (appStore.isLoggedIn && !getBoolAsync(HAS_IN_REVIEW)) ? ic_library.iconImage(color: textSecondaryColor) : ic_category.iconImage(color: textSecondaryColor),

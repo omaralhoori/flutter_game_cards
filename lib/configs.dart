@@ -15,7 +15,7 @@ const DEFAULT_LANGUAGE = 'en';
 //
 
 /// BASE CONFIG
-const DOMAIN_URL = 'http://192.168.1.104:8005';// 'http://31.220.90.177';//'https://smhosstore.com'; // DO NOT ADD SLASH IN THE END
+const DOMAIN_URL = 'http://31.220.90.177'; // 'http://192.168.1.104:8005';//'https://smhosstore.com'; // DO NOT ADD SLASH IN THE END
 const BASE_URL = '$DOMAIN_URL/api/method/';
 const CONSUMER_SECRET = 'cs_3ac38528e7553a83bd9477b4fce28f2436496a8';
 const CONSUMER_KEY = 'ck_70a62090ac76c3c50c5f33a294e9e224d43aa85';

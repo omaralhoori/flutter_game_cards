@@ -761,4 +761,7 @@ class LanguageAr extends BaseLanguage {
   
   @override
   String get checkoutConfirm => 'الرجاء تأكيد عملية الشراء';
+
+  @override
+  String get lblMyOrders => 'طلباتي';
 }

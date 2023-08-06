@@ -87,15 +87,15 @@ class _DescriptionComponentState extends State<DescriptionComponent> {
             children: [
               Marquee(child: Text(widget.bookInfo.name.validate(), style: boldTextStyle(size: 18))).expand(),
               16.width,
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: onBookmarkTap,
-                child: Container(
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(color: context.cardColor, borderRadius: radius(12)),
-                  child: Icon(Icons.bookmark_border, size: 24),//(widget.bookInfo.isAddedWishlist.validate()) ? Icon(Icons.bookmark, size: 24) : Icon(Icons.bookmark_border, size: 24),
-                ),
-              )
+              // GestureDetector(
+              //   behavior: HitTestBehavior.translucent,
+              //   onTap: onBookmarkTap,
+              //   child: Container(
+              //     padding: EdgeInsets.all(8),
+              //     decoration: BoxDecoration(color: context.cardColor, borderRadius: radius(12)),
+              //     child: Icon(Icons.bookmark_border, size: 24),//(widget.bookInfo.isAddedWishlist.validate()) ? Icon(Icons.bookmark, size: 24) : Icon(Icons.bookmark_border, size: 24),
+              //   ),
+              // )
             ],
           ),
           if (!getBoolAsync(HAS_IN_REVIEW))
@@ -105,6 +105,8 @@ class _DescriptionComponentState extends State<DescriptionComponent> {
             )
           else
             Text('Free', style: boldTextStyle(color: Colors.green, size: 20)),
+          if ((widget.bookInfo.projectedQty ?? 0) > 0)
+            Text('Stock: ' + widget.bookInfo.projectedQty.toString()),
           32.height,
           // if (sampleFile.isNotEmpty)
           //   GestureDetector(

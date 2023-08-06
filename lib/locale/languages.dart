@@ -319,6 +319,8 @@ abstract class BaseLanguage {
 
   String get lblShop;
 
+  String get lblMyOrders;
+
   String get lblDefaultSettings;
 
   String get lblSettings;

@@ -761,4 +761,7 @@ class LanguageEn extends BaseLanguage {
   
   @override
   String get checkoutConfirm => 'Please confirm your purchase';
+
+  @override
+  String get lblMyOrders => 'My Orders';
 }

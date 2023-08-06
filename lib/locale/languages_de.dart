@@ -23,7 +23,8 @@ class LanguageDe extends BaseLanguage {
 
   @override
   String get headerNewestBookMessage => "Erkunden Sie die neuesten Bücher";
-
+ @override
+  String get lblMyOrders => 'My Orders';
   @override
   String get headerFeaturedBookTitle => "Ausgewählte Bücher";
 

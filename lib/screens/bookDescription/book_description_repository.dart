@@ -6,6 +6,7 @@ import 'package:bookkart_flutter/models/base_response_model.dart';
 import 'package:bookkart_flutter/network/network_utils.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/all_book_list_response.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/category_model.dart';
+import 'package:bookkart_flutter/screens/bookDescription/model/invoice_model.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/my_cart_model.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/paid_book_response.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
@@ -143,4 +144,18 @@ Future<List<CardModel>> getAllBookRestApi({
     services.add(CardModel.fromJson(res));
   }
   return services;
+}
+Future<List<InvoiceModel>> getAllInvoices() async {
+  log('GET-ALL-INVOICES-REST-API');
+  final response = await responseHandler(await APICall().getMethod("erpnext.api.data.get_invoices"));
+  List<InvoiceModel> invoices = [];
+  for (var res in response['message']){
+
+      for (var serial in res['serial_no'].split('\n')){
+          invoices.add(InvoiceModel.fromJson(res, serial));
+  
+    }
+    
+  }
+  return invoices;
 }

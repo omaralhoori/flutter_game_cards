@@ -125,20 +125,41 @@ abstract class _CartStore with Store {
   Future<void> increaseCard(CardModel card) async{
     // productId.add(card.id);
     // card.qty += 1;
+    if (!checkStockQty(card)){
+       toast("Stock not enough");
+        return;
+      }
     await dbHelper.insertCard(card);
     init();
   }
-
+  bool checkStockQty(CardModel card){
+    for (var item in this.cartList){
+      if(item.id == card.id){
+        if(item.qty < (card.projectedQty ?? 0)){
+          return true;
+        }else{
+          return false;
+        }
+        
+      }
+    }
+    return true;
+  }
   Future<void> addToCart(BuildContext context, {required String bookId, required CardModel card}) async {
     if (!appStore.isLoggedIn) SignInScreen().launch(context);
 
 
     appStore.setLoading(true);
     try{
+      if (!checkStockQty(card)){
+        toast("Stock not enough");
+        return;
+      }
       await dbHelper.insertCard(card);
+      
       calculateTotal();
-      addItemFromCart(bookId: bookId);
       appStore.setLoading(false);
+      await init();
     }catch(e){
       appStore.setLoading(false);
       calculateTotal();

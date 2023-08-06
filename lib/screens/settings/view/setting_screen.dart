@@ -10,6 +10,7 @@ import 'package:bookkart_flutter/screens/auth/view/change_password_screen.dart';
 import 'package:bookkart_flutter/screens/auth/view/edit_profile_screen.dart';
 import 'package:bookkart_flutter/screens/auth/view/sign_in_screen.dart';
 import 'package:bookkart_flutter/screens/author/view/author_list_screen.dart';
+import 'package:bookkart_flutter/screens/bookDescription/view/list_view_all_invoices_screen.dart';
 import 'package:bookkart_flutter/screens/bookmark/view/my_bookmark_screen.dart';
 import 'package:bookkart_flutter/screens/dashboard/view/dashboardFragment/category_list_fragment_screen.dart';
 import 'package:bookkart_flutter/screens/language_screen.dart';
@@ -122,7 +123,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             GestureDetector(
                               behavior: HitTestBehavior.translucent,
                               onTap: () async {
-                                await EditProfileScreen().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
+                               // await EditProfileScreen().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
                               },
                               child: Observer(builder: (context) {
                                 return Container(
@@ -136,16 +137,16 @@ class _SettingScreenState extends State<SettingScreen> {
                                 );
                               }),
                             ),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: Container(
-                                height: 35,
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(width: 1), color: context.scaffoldBackgroundColor),
-                                child: Icon(Icons.edit, size: 20),
-                              ).visible(!(appStore.loginType == GOOGLE_USER) && !(appStore.loginType == OTP_USER)),
-                            ),
+                            // Positioned(
+                            //   bottom: 0,
+                            //   right: 0,
+                            //   child: Container(
+                            //     height: 35,
+                            //     padding: EdgeInsets.all(8),
+                            //     decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(width: 1), color: context.scaffoldBackgroundColor),
+                            //     child: Icon(Icons.edit, size: 20),
+                            //   ).visible(!(appStore.loginType == GOOGLE_USER) && !(appStore.loginType == OTP_USER)),
+                            // ),
                           ],
                         ),
                         16.height,
@@ -202,39 +203,39 @@ class _SettingScreenState extends State<SettingScreen> {
                       if (appStore.isLoggedIn)
                         Column(
                           children: [
-                            SettingItemWidget(
-                              title: locale.lblTransactionHistory,
-                              leading: ic_payment.iconImage(size: SETTING_ICON_SIZE.toDouble()),
-                              decoration: BoxDecoration(borderRadius: radius()),
-                              trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
-                              onTap: () {
-                                if (!appStore.isNetworkAvailable) {
-                                  toast("Internet is Not Available");
-                                  appStore.setLoading(false);
-                                  return;
-                                }
+                            // SettingItemWidget(
+                            //   title: locale.lblTransactionHistory,
+                            //   leading: ic_payment.iconImage(size: SETTING_ICON_SIZE.toDouble()),
+                            //   decoration: BoxDecoration(borderRadius: radius()),
+                            //   trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
+                            //   onTap: () {
+                            //     if (!appStore.isNetworkAvailable) {
+                            //       toast("Internet is Not Available");
+                            //       appStore.setLoading(false);
+                            //       return;
+                            //     }
 
-                                TransactionHistoryScreen().launch(context);
-                              },
-                            ),
-                            SettingItemWidget(
-                              title: locale.lblMyBookmark,
-                              leading: ic_bookmark.iconImage(size: SETTING_ICON_SIZE.toDouble()),
-                              decoration: BoxDecoration(borderRadius: radius()),
-                              trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
-                              onTap: () {
-                                if (!appStore.isLoggedIn) {
-                                  SignInScreen().launch(context);
-                                } else {
-                                  if (!appStore.isNetworkAvailable) {
-                                    toast("Internet is Not Available");
-                                    appStore.setLoading(false);
-                                    return;
-                                  }
-                                  MyBookMarkScreen().launch(context);
-                                }
-                              },
-                            ),
+                            //     AllInvoicesScreen().launch(context);
+                            //   },
+                            // ),
+                            // SettingItemWidget(
+                            //   title: locale.lblMyBookmark,
+                            //   leading: ic_bookmark.iconImage(size: SETTING_ICON_SIZE.toDouble()),
+                            //   decoration: BoxDecoration(borderRadius: radius()),
+                            //   trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
+                            //   onTap: () {
+                            //     if (!appStore.isLoggedIn) {
+                            //       SignInScreen().launch(context);
+                            //     } else {
+                            //       if (!appStore.isNetworkAvailable) {
+                            //         toast("Internet is Not Available");
+                            //         appStore.setLoading(false);
+                            //         return;
+                            //       }
+                            //       MyBookMarkScreen().launch(context);
+                            //     }
+                            //   },
+                            // ),
                             SettingItemWidget(
                               title: locale.lblMyCart,
                               leading: ic_shopping_cart.iconImage(size: SETTING_ICON_SIZE.toDouble()),
@@ -252,22 +253,22 @@ class _SettingScreenState extends State<SettingScreen> {
                             ),
                           ],
                         ),
-                      if (appStore.isLoggedIn && !appStore.isSocialLogin)
-                        SettingItemWidget(
-                          title: locale.lblChangePwd,
-                          leading: ic_change_password.iconImage(size: SETTING_ICON_SIZE.toDouble()),
-                          decoration: BoxDecoration(borderRadius: radius()),
-                          trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
-                          onTap: () {
-                            if (!appStore.isNetworkAvailable) {
-                              toast("Internet is Not Available");
-                              appStore.setLoading(false);
-                              return;
-                            }
+                      // if (appStore.isLoggedIn && !appStore.isSocialLogin)
+                      //   SettingItemWidget(
+                      //     title: locale.lblChangePwd,
+                      //     leading: ic_change_password.iconImage(size: SETTING_ICON_SIZE.toDouble()),
+                      //     decoration: BoxDecoration(borderRadius: radius()),
+                      //     trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
+                      //     onTap: () {
+                      //       if (!appStore.isNetworkAvailable) {
+                      //         toast("Internet is Not Available");
+                      //         appStore.setLoading(false);
+                      //         return;
+                      //       }
 
-                            ChangePasswordScreen().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
-                          },
-                        ),
+                      //       ChangePasswordScreen().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
+                      //     },
+                      //   ),
                       SettingItemWidget(
                         leading: ic_translation.iconImage(size: SETTING_ICON_SIZE.toDouble()),
                         title: locale.language,

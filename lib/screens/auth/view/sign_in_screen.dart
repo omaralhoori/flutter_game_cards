@@ -168,18 +168,18 @@ class _SignInScreenState extends State<SignInScreen> {
               textStyle: secondaryTextStyle(),
               size: 20,
             ),
-            TextButton(
-              onPressed: () {
-                showInDialog(
-                  context,
-                  elevation: 0,
-                  contentPadding: EdgeInsets.zero,
-                  dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM,
-                  builder: (_) => ForgotPasswordScreen(),
-                );
-              },
-              child: Text(locale.lblForgotPassword, style: boldTextStyle(color: primaryColor, fontStyle: FontStyle.italic)),
-            ).flexible(),
+            // TextButton(
+            //   onPressed: () {
+            //     showInDialog(
+            //       context,
+            //       elevation: 0,
+            //       contentPadding: EdgeInsets.zero,
+            //       dialogAnimation: DialogAnimation.SLIDE_TOP_BOTTOM,
+            //       builder: (_) => ForgotPasswordScreen(),
+            //     );
+            //   },
+            //   child: Text(locale.lblForgotPassword, style: boldTextStyle(color: primaryColor, fontStyle: FontStyle.italic)),
+            // ).flexible(),
           ],
         ),
         24.height,
