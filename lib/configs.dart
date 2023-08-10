@@ -1,6 +1,6 @@
 import 'package:country_picker/country_picker.dart';
 
-const APP_NAME = 'BookKart';
+const APP_NAME = 'Direct E-Goods';
 const DEFAULT_LANGUAGE = 'en';
 
 // const DOMAIN_URL = 'https://smhosstore.com'; // Do not add slash in the end

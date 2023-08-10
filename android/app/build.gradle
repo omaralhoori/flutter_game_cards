@@ -32,7 +32,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.iqonic.bookkart"
+        applicationId "com.direct.egoods"
         minSdkVersion 23
         targetSdkVersion 33
         versionCode 37

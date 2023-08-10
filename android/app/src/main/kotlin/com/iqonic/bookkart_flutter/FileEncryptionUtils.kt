@@ -1,4 +1,4 @@
-package com.iqonic.bookkart_flutter
+package com.direct.egoods
 
 import android.content.Context
 import android.media.MediaCodec

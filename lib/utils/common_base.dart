@@ -367,7 +367,7 @@ class BookDesign extends StatelessWidget {
                         height: 150,
                         width: 100,
                         url: formatImageUrl(data.image.validate()),
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),

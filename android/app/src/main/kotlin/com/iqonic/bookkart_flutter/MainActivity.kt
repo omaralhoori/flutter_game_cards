@@ -1,4 +1,4 @@
-package com.iqonic.bookkart_flutter
+package com.direct.egoods
 
 import io.flutter.embedding.android.FlutterActivity
 import androidx.annotation.NonNull

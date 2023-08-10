@@ -280,7 +280,7 @@ class LanguageAr extends BaseLanguage {
   String get lblVersion => "الإصدار 1.0";
 
   @override
-  String get appName => "bookkart";
+  String get appName => "Direct E-Good";
 
   @override
   String get lblTermsConditions => "الشروط والشرط";
@@ -292,7 +292,7 @@ class LanguageAr extends BaseLanguage {
   String get lblFollowUs => "تابعنا";
 
   @override
-  String get lblWelcome => "مرحبًا بك في Bookkart";
+  String get lblWelcome => "مرحبًا بك في Direct E-Good";
 
   @override
   String get lblPurchaseOnline => "شراء عبر الانترنت";

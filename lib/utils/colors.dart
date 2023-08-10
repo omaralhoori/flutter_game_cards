@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 const scaffoldColor = Color(0xffF0F4FF);
 const screenBackgroundColor = Color(0xffF0F4FF);
 const appLayout_background = Color(0xFFf8f8f8);
-const primaryColor = Color(0xE64268cd);
+const primaryColor = Color(0xFF038C73);
 const scaffoldSecondaryDark = Color(0xFF1C1F26);
 const cardColor = Color(0xFFFFFFFF);
 const borderColor = Color(0xEE9DCFFF);
