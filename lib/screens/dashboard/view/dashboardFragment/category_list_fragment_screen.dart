@@ -52,7 +52,17 @@ class _CategoriesListFragmentState extends State<CategoriesListFragment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: (widget.showLargeTitle ?? true) ? appBarWidget(locale.lblCategories) : AppBar(title: CustomAppBar(title1: '', title2: locale.lblCategories, isHome: false)),
+      appBar:  appBarWidget(
+        locale.lblCategories,
+        showBack: widget.showLargeTitle ?? true,
+        titleWidget: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+            Text(locale.lblCategories, style:primaryTextStyle(size: 20, weight: FontWeight.bold) ,),
+            Text("Balance: " + cartStore.customerBalance.toString(), style: primaryTextStyle(size: 20),)
+          ],),) ),
       body: NoInternetFound(
         child: Stack(
           children: [
