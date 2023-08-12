@@ -5,9 +5,7 @@ import 'package:bookkart_flutter/components/no_internet_component.dart';
 import 'package:bookkart_flutter/components/sliver_appbar_widget.dart';
 import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/bookDescription/book_description_repository.dart';
-import 'package:bookkart_flutter/screens/bookDescription/model/invoice_list_model.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/invoice_model.dart';
-import 'package:bookkart_flutter/screens/bookDescription/view/invoice_details_screen.dart';
 import 'package:bookkart_flutter/screens/dashboard/component/all_sub_category_component.dart';
 import 'package:bookkart_flutter/utils/extensions/int_extensions.dart';
 import 'package:bookkart_flutter/utils/images.dart';
@@ -17,36 +15,38 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-class AllInvoicesScreen extends StatefulWidget {
-  
-  const AllInvoicesScreen({super.key});
+class InvoiceDetailScreen extends StatefulWidget {
+  final String invoiceId;
+  const InvoiceDetailScreen({super.key, required this.invoiceId});
 
   @override
-  State<AllInvoicesScreen> createState() => _AllInvoicesScreenState();
+  State<InvoiceDetailScreen> createState() => _InvoiceDetailScreenState();
 }
 
-class _AllInvoicesScreenState extends State<AllInvoicesScreen> {
-  bool isLastPage = false;
-  int page = 1;
-  List<InvoiceListModel> invoices = [];
-  Future<List<InvoiceListModel>>? future;
+class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
+  Future<List<InvoiceModel>>? future;
    @override
   void initState() {
     super.initState();
     init();
   }
    Future<void> init() async {
-    future = getAllInvoices(page, invoices: invoices, lastPageCallBack: (p0) {
-      return isLastPage = p0;
-    });
+    future = getInvoiceDetails(widget.invoiceId);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(title: CustomAppBar(title1: '', title2: locale.lblMyOrders, isHome: false)),
+      appBar:  AppBar(title: CustomAppBar(title1: '', title2: locale.lblMyOrders, isHome: false), actions: [
+        IconButton(
+          onPressed: (){
+            cartStore.printInvoice(widget.invoiceId);
+          }, 
+          iconSize: 28,
+          icon: Icon(Icons.print))
+      ],),
       body: NoInternetFound(
-        child: SnapHelperWidget<List<InvoiceListModel>>(
+        child: SnapHelperWidget<List<InvoiceModel>>(
           future: future,
           loadingWidget: AppLoader(),
           errorWidget: BackgroundComponent(text: locale.lblNoDataFound, image: img_no_data_found, showLoadingWhileNotLoading: true),
@@ -61,14 +61,6 @@ class _AllInvoicesScreenState extends State<AllInvoicesScreen> {
 
             return AnimatedScrollView(
               padding: EdgeInsets.only(bottom: 16),
-              onNextPage: () {
-                print(isLastPage);
-                    if (!isLastPage) {
-                      page++;
-                      init();
-                      setState(() {});
-                    }
-                  },
               children: [
                 AnimatedListView(
                   shrinkWrap: true,
@@ -77,8 +69,8 @@ class _AllInvoicesScreenState extends State<AllInvoicesScreen> {
                   padding: EdgeInsets.only(left: 16, right: 16),
                  physics: ClampingScrollPhysics(),
                   itemBuilder: (_, index) {
-                    InvoiceListModel invoiceModel = snap[index];
-                    return InvoiceListItem(invoice: invoiceModel);
+                    InvoiceModel invoiceModel = snap[index];
+                    return InvoiceItem(invoice: invoiceModel);
                   },
                 ),
               ],
@@ -91,15 +83,15 @@ class _AllInvoicesScreenState extends State<AllInvoicesScreen> {
 }
 
 
-class InvoiceListItem extends StatefulWidget {
-  final InvoiceListModel invoice;
-  InvoiceListItem({super.key, required this.invoice});
+class InvoiceItem extends StatefulWidget {
+  final InvoiceModel invoice;
+  InvoiceItem({super.key, required this.invoice});
 
   @override
-  State<InvoiceListItem> createState() => _InvoiceListItemItemState();
+  State<InvoiceItem> createState() => _InvoiceItemState();
 }
 
-class _InvoiceListItemItemState extends State<InvoiceListItem> {
+class _InvoiceItemState extends State<InvoiceItem> {
    String dateFormat = DateFormat("yMMMd").toString();
   bool copied =false;
   @override
@@ -130,7 +122,10 @@ class _InvoiceListItemItemState extends State<InvoiceListItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async{
-        InvoiceDetailScreen(invoiceId: widget.invoice.id).launch(context);
+        await Clipboard.setData(ClipboardData(text: widget.invoice.serialNo));
+        setState(() {
+          this.copied = true;
+        });
       },
       child: Column(
         children: [
@@ -141,7 +136,22 @@ class _InvoiceListItemItemState extends State<InvoiceListItem> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                              Row(
+                Row(
+                  children: [
+                    Image.asset(ic_order_id, height: 24, width: 24, fit: BoxFit.fill, color: context.iconColor),
+                    4.width,
+                    Text("${widget.invoice.serialNo.validate()}", style: secondaryTextStyle()).expand(),
+                    16.width,
+                    copied ? Text(
+                      'Copied',
+                      style: boldTextStyle(
+                        color: Colors.green     
+                      )):Icon(Icons.copy)
+                    
+                  ],
+                ),
+                8.height,
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     buildImageWidget(),
@@ -149,10 +159,10 @@ class _InvoiceListItemItemState extends State<InvoiceListItem> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('${widget.invoice.id.validate()}', style: boldTextStyle(), maxLines: 2),
+                        Text('${widget.invoice.itemCode.validate()}', style: boldTextStyle(), maxLines: 2),
                         Text(dateFormat.validate(), style: secondaryTextStyle()),
-                        Marquee(child: Text(widget.invoice.totalQty.toString(), style: secondaryTextStyle(size: 12))),
-                        Text(widget.invoice.grandTotal.toString().validate().getFormattedPrice(), style: boldTextStyle()),
+                        Marquee(child: Text(widget.invoice.invoiceId, style: secondaryTextStyle(size: 12))),
+                        Text(widget.invoice.itemRate.toString().validate().getFormattedPrice(), style: boldTextStyle()),
                       ],
                     ).expand(),
                   ],

@@ -232,7 +232,7 @@ Future<dynamic> buildHttpResponse(
   if (await isNetworkAvailable()) {
     Uri url = Uri.parse(APICall().getOAuthURL(method.name, endPoint));
 
-    Map<String, String> headers = await buildTokenHeader(requireToken: isTokenRequired);
+    Map<String, String> headers = {'Authorization':'token ${appStore.token}'};//await buildTokenHeader(requireToken: isTokenRequired);
 
     Response response;
 
@@ -257,7 +257,7 @@ Future<dynamic> buildHttpResponse(
       methodtype: method.name,
     );
 
-    return await handleResponse(response, responseType: responseType);
+    return response;//await handleResponse(response, responseType: responseType);
   } else {
     throw errorInternetNotAvailable;
   }

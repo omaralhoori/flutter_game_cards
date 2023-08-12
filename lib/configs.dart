@@ -20,7 +20,7 @@ const BASE_URL = '$DOMAIN_URL/api/method/';
 const CONSUMER_SECRET = 'cs_3ac38528e7553a83bd9477b4fce28f2436496a8';
 const CONSUMER_KEY = 'ck_70a62090ac76c3c50c5f33a294e9e224d43aa85';
 
-const PER_PAGE_ITEM = 30;
+const PER_PAGE_ITEM = 20;
 const bool ENABLE_ADS = false;
 const TERMS_CONDITION_URL = 'https://iqonic.design/terms-of-use/';
 const PRIVACY_POLICY_URL = 'https://iqonic.design/privacy-policy/';

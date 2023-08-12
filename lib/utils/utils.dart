@@ -4,11 +4,13 @@ import 'dart:io';
 import 'package:aes_crypt_null_safe/aes_crypt_null_safe.dart';
 import 'package:bookkart_flutter/configs.dart';
 import 'package:bookkart_flutter/main.dart';
+import 'package:bookkart_flutter/network/network_utils.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -188,4 +190,36 @@ String formatImageUrl(String src){
   if (src.startsWith('http')) return src;
   if (src == '') return src;
   return DOMAIN_URL + src;
+}
+
+
+Future<File?> downloadFile(String name) async {
+  if (! await checkPermission() ){
+    return null;
+  }
+  //if(Platform.isIOS) return null;
+  final appStorage = await getApplicationDocumentsDirectory();
+  // await getApplicationDocumentsDirectory(); //await getExternalStorageDirectory();
+  //if (appStorage == null) return;
+  final path = appStorage.path;
+  final file = File('${path}/$name.pdf');
+  try {
+    final response = await  buildHttpResponse("frappe.utils.print_format.download_pdf?doctype=Sales%20Invoice&name=$name&key=None&format=Sales%20Invoice", responseType: HttpResponseType.BODY_BYTES);
+    if (response.statusCode == 200) {
+      final raf = file.openSync(mode: FileMode.write);
+      raf.writeFromSync(response.bodyBytes.cast<int>());
+      await raf.close();
+    }
+
+    return file;
+  } catch (e) {
+    print(e);
+    return null;
+  }
+}
+
+Future openFile({required String name}) async {
+  final file = await downloadFile(name);
+  if (file == null) return;
+  await OpenFile.open(file.path);
 }

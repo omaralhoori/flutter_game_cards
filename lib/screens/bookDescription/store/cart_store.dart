@@ -6,6 +6,7 @@ import 'package:bookkart_flutter/screens/bookDescription/book_description_reposi
 import 'package:bookkart_flutter/screens/bookDescription/model/my_cart_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/transaction/transaction_repository.dart';
+import 'package:bookkart_flutter/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -180,11 +181,13 @@ abstract class _CartStore with Store {
 
   Future<Map<String, dynamic>> checkoutCart() async {
     if (this.customerBalance >= this.totalAmount){
+      appStore.setLoading(true);
        Map<String, dynamic> request = {
         "cart_items": this.cartList.map((e) => {"item_id": e.id, "item_qty": e.qty}).toList(),
         "total_amount": this.totalAmount
       };
       final res = await checkoutCartRequest(request);
+      appStore.setLoading(false);
       return res['message'];
     }else{
       return {
@@ -193,6 +196,12 @@ abstract class _CartStore with Store {
       };
     }
      
+  }
+
+  Future printInvoice(String invoiceId) async {
+    appStore.setLoading(true);
+    await openFile(name: invoiceId);
+    appStore.setLoading(false);
   }
 
   Future cleanCart() async{

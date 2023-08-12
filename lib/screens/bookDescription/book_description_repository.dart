@@ -6,6 +6,7 @@ import 'package:bookkart_flutter/models/base_response_model.dart';
 import 'package:bookkart_flutter/network/network_utils.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/all_book_list_response.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/category_model.dart';
+import 'package:bookkart_flutter/screens/bookDescription/model/invoice_list_model.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/invoice_model.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/my_cart_model.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/paid_book_response.dart';
@@ -145,9 +146,27 @@ Future<List<CardModel>> getAllBookRestApi({
   }
   return services;
 }
-Future<List<InvoiceModel>> getAllInvoices() async {
+Future<List<InvoiceListModel>> getAllInvoices( int page, {
+  int perPage = PER_PAGE_ITEM,
+  required List<InvoiceListModel> invoices,
+  Function(bool)? lastPageCallBack,}) async {
+  if (page == 1) invoices.clear();
+  int start = (page - 1) * perPage;
+  print("Start: $start, PerPage: $perPage");
   log('GET-ALL-INVOICES-REST-API');
-  final response = await responseHandler(await APICall().getMethod("erpnext.api.data.get_invoices"));
+  final response = await responseHandler(await APICall().getMethod("erpnext.api.data.get_invoices?start=$start&limit=$perPage"));
+  //List<InvoiceListModel> invoices = [];
+  for (var res in response['message']){
+    invoices.add(InvoiceListModel.fromJson(res));  
+  }
+
+  lastPageCallBack?.call(response['message'].length != 5);
+
+  return invoices;
+}
+Future<List<InvoiceModel>> getInvoiceDetails(String invoiceId) async {
+  log('GET-ALL-INVOICES-REST-API');
+  final response = await responseHandler(await APICall().getMethod("erpnext.api.data.get_invoice_details?invoice=$invoiceId"));
   List<InvoiceModel> invoices = [];
   for (var res in response['message']){
 

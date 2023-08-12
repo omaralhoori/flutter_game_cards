@@ -2,6 +2,7 @@ import 'package:bookkart_flutter/components/app_loader.dart';
 import 'package:bookkart_flutter/components/background_component.dart';
 import 'package:bookkart_flutter/components/no_internet_component.dart';
 import 'package:bookkart_flutter/main.dart';
+import 'package:bookkart_flutter/screens/bookDescription/view/invoice_details_screen.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/screens/transaction/component/cart_component.dart';
@@ -36,6 +37,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                       toastLong(res['error']);
                     }else{
                       cartStore.cleanCart();
+                      InvoiceDetailScreen(invoiceId: res['invoice']).launch(context);
                     }
                   },
                 );
