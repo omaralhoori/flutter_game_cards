@@ -56,9 +56,15 @@ class LanguageHi extends BaseLanguage {
 
   @override
   String get featuredBooks => "फीचर्ड बुक्स";
-
+@override
+  String get lblBalance => 'Balance';
+  @override
+  String get lblStock => 'Stock';
   @override
   String get featuredBooksDesc => "लोरम इप्सम केवल प्रिंटिंग और टाइपसेटिंग उद्योग का डमी टेक्स्ट है।";
+
+  @override
+  String get msgNoEnoughBalance => "You do not have enough balance";
 
   @override
   String get booksForYou => "आपके लिए किताबें";

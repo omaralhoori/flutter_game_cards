@@ -200,7 +200,9 @@ abstract class BaseLanguage {
   String get lblPurchaseOnline;
 
   String get lblPushNotification;
+  String get lblBalance;
 
+  String get lblStock;
   String get lblPrev;
 
   String get lblNext;
@@ -436,6 +438,8 @@ abstract class BaseLanguage {
   String get signInWithApple;
 
   String get pleaseAcceptTermsAndConditions;
+
+  String get msgNoEnoughBalance;
 
   String get signupForBetterExperience;
 

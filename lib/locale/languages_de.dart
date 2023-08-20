@@ -17,9 +17,15 @@ class LanguageDe extends BaseLanguage {
   String get avlblSoon => "Available Soon";
   @override
   String get msgNoInternet => "Sie sind nicht mit dem Internet verbunden";
-
+@override
+  String get lblBalance => 'Balance';
+  @override
+  String get lblStock => 'Stock';
   @override
   String get headerNewestBookTitle => "Neueste Bücher";
+
+  @override
+  String get msgNoEnoughBalance => "You do not have enough balance";
 
   @override
   String get headerNewestBookMessage => "Erkunden Sie die neuesten Bücher";

@@ -288,9 +288,15 @@ class LanguageFr extends BaseLanguage {
 
   @override
   String get lblPrivacyPolicy => "Politique de confidentialité";
-
+@override
+  String get lblBalance => 'Balance';
+  @override
+  String get lblStock => 'Stock';
   @override
   String get lblFollowUs => "Suivez nous";
+
+  @override
+  String get msgNoEnoughBalance => "You do not have enough balance";
 
   @override
   String get lblWelcome => "Bienvenue à Bookkart";

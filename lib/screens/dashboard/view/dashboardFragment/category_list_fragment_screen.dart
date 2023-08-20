@@ -61,7 +61,7 @@ class _CategoriesListFragmentState extends State<CategoriesListFragment> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
             Text(locale.lblCategories, style:primaryTextStyle(size: 20, weight: FontWeight.bold) ,),
-            Text("Balance: " + cartStore.customerBalance.toString(), style: primaryTextStyle(size: 20),)
+            Text( locale.lblBalance+": " + cartStore.customerBalance.toString(), style: primaryTextStyle(size: 20),)
           ],),) ),
       body: NoInternetFound(
         child: Stack(

@@ -2,7 +2,7 @@ import 'package:bookkart_flutter/locale/languages.dart';
 
 class LanguageAr extends BaseLanguage {
   @override
-  String get titleBookStore => "مكتبة لبيع الكتب";
+  String get titleBookStore => "المتجر";
 
   @override
   String get titleMyLibrary => "مكتبتي";
@@ -115,7 +115,7 @@ class LanguageAr extends BaseLanguage {
   String get lblMoreBooksFromAuthor => "المزيد من الكتب من المؤلف";
 
   @override
-  String get lblCancel => "يلغي";
+  String get lblCancel => "إلغاء";
 
   @override
   String get lblChangePwd => "تغيير كلمة المرور";
@@ -322,7 +322,7 @@ class LanguageAr extends BaseLanguage {
   String get lblBookNotAvailable => "كتاب غير متوفر";
 
   @override
-  String get lblSearchForBooks => "ابحث عن الكتب";
+  String get lblSearchForBooks => "ابحث";
 
   @override
   String get lblAllFiles => "كل الملفات";
@@ -404,6 +404,11 @@ class LanguageAr extends BaseLanguage {
 
   @override
   String get lblOk => "موافق";
+
+  @override
+  String get lblBalance => 'الرصيد';
+  @override
+  String get lblStock => 'متوفر';
 
   @override
   String get lblEnterPageNumber => "رقم الصفحة";
@@ -494,6 +499,9 @@ class LanguageAr extends BaseLanguage {
 
   @override
   String get lblFree => "حر";
+
+  @override
+  String get msgNoEnoughBalance => "لا تملك الرصيد الكافي لإتمام العملية";
 
   @override
   String get lblShowMore => "أظهر المزيد";
@@ -595,13 +603,13 @@ class LanguageAr extends BaseLanguage {
   String get lblVisitMyShop => 'قم بزيارة متجري';
 
   @override
-  String get lblPickTheme => 'اختر موضوع التطبيق';
+  String get lblPickTheme => 'اختر ثمة التطبيق';
 
   @override
-  String get lightMode => 'وضع الضوء';
+  String get lightMode => 'الوضع النهاري';
 
   @override
-  String get darkMode => 'الوضع المظلم';
+  String get darkMode => 'الوضع الليلي';
 
   @override
   String get systemDefault => 'وضع النظام';
@@ -625,7 +633,7 @@ class LanguageAr extends BaseLanguage {
   String get confirmOTP => 'تأكيد OTP';
 
   @override
-  String get confirm => 'يتأكد';
+  String get confirm => 'تأكيد';
 
   @override
   String get sendingOTP => 'إرسال OTP';
@@ -676,7 +684,7 @@ class LanguageAr extends BaseLanguage {
   String get language => 'لغة';
 
   @override
-  String get appTheme => 'موضوع التطبيق';
+  String get appTheme => 'ثمة التطبيق';
 
   @override
   String get reviewBy => 'روجع من قبل';

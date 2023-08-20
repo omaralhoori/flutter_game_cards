@@ -324,11 +324,17 @@ class LanguageEn extends BaseLanguage {
   @override
   String get lblSearchForBooks => "Search";
 
+@override
+  String get lblBalance => 'Balance';
   @override
   String get lblAllFiles => "All Files";
-
+@override
+  String get lblStock => 'Stock';
   @override
   String get lblNoDataFound => "No Data Found";
+
+  @override
+  String get msgNoEnoughBalance => "You do not have enough balance";
 
   @override
   String get lblConfirmationUploadImage => "Are you sure want to upload image?";

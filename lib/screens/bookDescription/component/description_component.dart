@@ -106,7 +106,7 @@ class _DescriptionComponentState extends State<DescriptionComponent> {
           else
             Text('Free', style: boldTextStyle(color: Colors.green, size: 20)),
           if ((widget.bookInfo.projectedQty ?? 0) > 0)
-            Text('Stock: ' + widget.bookInfo.projectedQty.toString()),
+            Text( locale.lblStock+ ': ' + widget.bookInfo.projectedQty.toString()),
           32.height,
           // if (sampleFile.isNotEmpty)
           //   GestureDetector(

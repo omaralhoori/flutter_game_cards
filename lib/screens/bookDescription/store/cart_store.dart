@@ -192,7 +192,7 @@ abstract class _CartStore with Store {
     }else{
       return {
         "success_key": 0,
-        "error": "You do not have enough balance"
+        "error": locale.msgNoEnoughBalance//"You do not have enough balance"
       };
     }
      

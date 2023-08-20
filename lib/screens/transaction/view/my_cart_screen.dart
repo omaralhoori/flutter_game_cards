@@ -31,6 +31,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
                   title: locale.checkoutConfirm,
                   context,
                   dialogType: DialogType.CONFIRMATION,
+                  positiveText: locale.confirm,
+                  negativeText: locale.lblCancel,
                   onAccept: (e) async {
                     final res = await cartStore.checkoutCart();
                     if (res['success_key'] == 0){
@@ -77,7 +79,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
             Text(locale.lblMyCart, style:primaryTextStyle(size: 20, weight: FontWeight.bold) ,),
-            Text("Balance: " + cartStore.customerBalance.toString(), style: primaryTextStyle(size: 20),)
+            Text(locale.lblBalance +": " + cartStore.customerBalance.toString(), style: primaryTextStyle(size: 20),)
           ],),
         ),
         showBack: widget.showBack, 
