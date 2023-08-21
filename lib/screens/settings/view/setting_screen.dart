@@ -14,6 +14,7 @@ import 'package:bookkart_flutter/screens/bookDescription/view/list_view_all_invo
 import 'package:bookkart_flutter/screens/bookmark/view/my_bookmark_screen.dart';
 import 'package:bookkart_flutter/screens/dashboard/view/dashboardFragment/category_list_fragment_screen.dart';
 import 'package:bookkart_flutter/screens/language_screen.dart';
+import 'package:bookkart_flutter/screens/settings/view/recommendations_screen.dart';
 import 'package:bookkart_flutter/screens/transaction/view/my_cart_screen.dart';
 import 'package:bookkart_flutter/screens/transaction/view/transaction_history_screen.dart';
 import 'package:bookkart_flutter/utils/colors.dart';
@@ -249,6 +250,36 @@ class _SettingScreenState extends State<SettingScreen> {
                                 }
 
                                 MyCartScreen().launch(context);
+                              },
+                            ),
+                            SettingItemWidget(
+                              title: locale.lblRecommendations,
+                              leading: ic_message.iconImage(size: SETTING_ICON_SIZE.toDouble()),
+                              decoration: BoxDecoration(borderRadius: radius()),
+                              trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
+                              onTap: () {
+                                if (!appStore.isNetworkAvailable) {
+                                  toast("Internet is Not Available");
+                                  appStore.setLoading(false);
+                                  return;
+                                }
+
+                                RecommendationsScreen().launch(context);
+                              },
+                            ),
+                            SettingItemWidget(
+                              title: locale.lblTransactionHistory,
+                              leading: ic_term_and_condition.iconImage(size: SETTING_ICON_SIZE.toDouble()),
+                              decoration: BoxDecoration(borderRadius: radius()),
+                              trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
+                              onTap: () {
+                                if (!appStore.isNetworkAvailable) {
+                                  toast("Internet is Not Available");
+                                  appStore.setLoading(false);
+                                  return;
+                                }
+
+                                RecommendationsScreen().launch(context);
                               },
                             ),
                           ],

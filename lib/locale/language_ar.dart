@@ -121,7 +121,7 @@ class LanguageAr extends BaseLanguage {
   String get lblChangePwd => "تغيير كلمة المرور";
 
   @override
-  String get lblSubmit => "يُقدِّم";
+  String get lblSubmit => "شارك";
 
   @override
   String get lblEditProfile => "تعديل الملف الشخصي";
@@ -772,4 +772,24 @@ class LanguageAr extends BaseLanguage {
 
   @override
   String get lblMyOrders => 'طلباتي';
+  
+  @override
+  // TODO: implement introRecommendation
+  String get introRecommendation => 'إذا كان لديك أي اقتراح أو توصية لتحسين الخدمة التي نقدمها, شاركها معنا';
+  
+  @override
+  // TODO: implement lblRecommendation
+  String get lblRecommendation => "الاقتراح";
+  
+  @override
+  // TODO: implement lblRecommendations
+  String get lblRecommendations => "الاقتراحات والتوصيات";
+  
+  @override
+  // TODO: implement lblSubject
+  String get lblSubject => "الموضوع";
+  
+  @override
+  // TODO: implement msgSuccessRecommendation
+  String get msgSuccessRecommendation => "تم مشاركة التوصية بنجاح";
 }

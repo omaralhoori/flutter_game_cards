@@ -79,6 +79,7 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
                     return InvoiceItem(invoice: invoiceModel);
                   },
                 ),
+                AppLoader(loadingVisible: true,isObserver: true),
               ],
             );
           },

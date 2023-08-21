@@ -296,6 +296,25 @@ class LanguageFr extends BaseLanguage {
   String get lblFollowUs => "Suivez nous";
 
   @override
+  // TODO: implement introRecommendation
+  String get introRecommendation => 'If you have any suggestions or recommendations to improve our services, feel free to share them with us.';
+  
+  @override
+  // TODO: implement lblRecommendation
+  String get lblRecommendation => 'Recommendation';
+  
+  @override
+  // TODO: implement lblRecommendations
+  String get lblRecommendations => 'Recommendations and Suggestions';
+  
+  @override
+  // TODO: implement lblSubject
+  String get lblSubject => 'Subject';
+  
+  @override
+  // TODO: implement msgSuccessRecommendation
+  String get msgSuccessRecommendation => 'Recommendation shared successfully';
+  @override
   String get msgNoEnoughBalance => "You do not have enough balance";
 
   @override

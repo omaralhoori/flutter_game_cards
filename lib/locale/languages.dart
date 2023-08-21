@@ -441,6 +441,16 @@ abstract class BaseLanguage {
 
   String get msgNoEnoughBalance;
 
+  String get lblRecommendations;
+  
+  String get lblSubject;
+
+  String get lblRecommendation;
+
+  String get introRecommendation;
+  
+  String get msgSuccessRecommendation;
+
   String get signupForBetterExperience;
 
   String get iAgreeToThe;
