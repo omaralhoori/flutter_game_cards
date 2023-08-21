@@ -8,6 +8,7 @@ import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/transaction/transaction_repository.dart';
 import 'package:bookkart_flutter/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mobx/mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -201,6 +202,12 @@ abstract class _CartStore with Store {
   Future printInvoice(String invoiceId) async {
     appStore.setLoading(true);
     await openFile(name: invoiceId);
+    
+    appStore.setLoading(false);
+  }
+  Future shareInvoice(String invoiceId) async {
+    appStore.setLoading(true);
+    await shareInvoiceByteList(name: invoiceId);  
     appStore.setLoading(false);
   }
 

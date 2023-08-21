@@ -17,18 +17,11 @@ dependencies:
   cached_network_image: ^3.2.3
   url_launcher: ^6.1.9
 
-  # FIREBASE
-  firebase_core: ^2.5.0
-  firebase_auth: ^4.6.3
-  firebase_remote_config: ^4.2.3
-  epubx: ^3.0.0
 
   # State MANAGEMENT
   mobx: ^2.2.0
   flutter_mobx: ^2.0.6+5
 
-  # NOTIFICATION
-  onesignal_flutter: ^3.5.1
 
   lottie: ^2.2.0
   flutter_html: ^3.0.0-beta.1
@@ -56,12 +49,6 @@ dependencies:
   flutter_pdfview: ^1.2.5
 
 
-  #AUDIO
-  just_audio: ^0.9.34
-
-  # VIDEO
-  chewie: ^1.5.0
-  video_player: ^2.5.1
 
   # PERMISSION HANDLING
   permission_handler: ^10.2.0
@@ -87,7 +74,11 @@ dependencies:
  
   purchases_flutter:  ^5.3.0
   get_storage: ^2.1.1
-  open_file: ^3.2.1
+  open_filex: ^4.3.2
+  pdfx: ^2.4.0
+  share_plus: ^7.1.0
+  flutter_share: ^2.0.0
+  image: ^4.0.17
 
 dependency_overrides:
   intl: ^0.17.0-nullsafety.2

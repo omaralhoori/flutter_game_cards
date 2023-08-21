@@ -1,7 +1,6 @@
 import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
-import 'package:bookkart_flutter/screens/offline/view/download_files_screen.dart';
 import 'package:bookkart_flutter/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';

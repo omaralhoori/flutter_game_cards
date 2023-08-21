@@ -1,20 +1,15 @@
 import 'dart:async';
 
 import 'package:bookkart_flutter/locale/language_en.dart';
-import 'package:bookkart_flutter/remote_config.dart';
-import 'package:bookkart_flutter/screens/auth/services/auth_services.dart';
 import 'package:bookkart_flutter/screens/splash_screen.dart';
 import 'package:bookkart_flutter/screens/transaction/services/inAppPurchase/in_app_puchase.dart';
 import 'package:bookkart_flutter/utils/app_theme.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:onesignal_flutter/onesignal_flutter.dart';
 
-import 'configs.dart';
 import 'locale/app_localizations.dart';
 import 'locale/languages.dart';
 import 'screens/bookDescription/store/cart_store.dart';
@@ -26,7 +21,6 @@ import 'utils/database_helper.dart';
 
 AppStore appStore = AppStore();
 CartStore cartStore = CartStore();
-AuthService authService = AuthService();
 ApiStore apiStore = ApiStore();
 InAppPurchaseService purchaseService = InAppPurchaseService();
 
@@ -43,21 +37,7 @@ void main() async {
 
   defaultRadius = 30;
 
-  /// Firebase initialization
 
-  Firebase.initializeApp().then((value) async {
-    /// OneSignal initialization
-
-    OneSignal.shared.setAppId(ONESIGNAL_APP_ID).then((value) {
-      OneSignal.shared.consentGranted(true);
-      OneSignal.shared.promptUserForPushNotificationPermission();
-      OneSignal.shared.userProvidedPrivacyConsent();
-      if (!isAndroid) OneSignal.shared.setLaunchURLsInApp(true);
-      OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
-
-      OneSignal.shared.promptUserForPushNotificationPermission(fallbackToSettings: true);
-    }).catchError(onError);
-  }).catchError(onError);
 
   defaultRadius = 30;
 
@@ -73,18 +53,7 @@ void main() async {
   } else if (currentIndex == THEME_MODE_DARK) {
     appStore.setDarkMode(true);
   }
-  await setStoreReviewConfig().then((value) async {
-    //TODO:
-    if (isIOS) {
-      await setValue(HAS_IN_REVIEW, value.getBool(HAS_IN_APP_STORE_REVIEW));
-    } else {
-      await setValue(HAS_IN_REVIEW, false);
-    }
-  }).catchError((e) {
-    log('------------------------------------------------------------------------');
-    log("Firebase remote config error : ${e.toString()}");
-    log('------------------------------------------------------------------------\n\n');
-  });
+ 
   await appStore.setLanguage(getStringAsync(SELECTED_LANGUAGE_CODE), isInitializing: true);
 
   if (appStore.isLoggedIn) {

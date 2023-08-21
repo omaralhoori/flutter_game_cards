@@ -39,8 +39,14 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
     return Scaffold(
       appBar:  AppBar(title: CustomAppBar(title1: '', title2: locale.lblMyOrders, isHome: false), actions: [
         IconButton(
-          onPressed: (){
-            cartStore.printInvoice(widget.invoiceId);
+          onPressed: () async{
+            await cartStore.shareInvoice(widget.invoiceId);
+          }, 
+          iconSize: 28,
+          icon: Icon(Icons.share)),
+        IconButton(
+          onPressed: () async{
+           await cartStore.printInvoice(widget.invoiceId);
           }, 
           iconSize: 28,
           icon: Icon(Icons.print))

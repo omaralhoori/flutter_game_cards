@@ -10,9 +10,12 @@ import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:open_file/open_file.dart';
+import 'package:open_filex/open_filex.dart';
+// import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pdfx/pdfx.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:share_plus/share_plus.dart';
 
 Future<String> getTime() async {
   DateTime currentTime = DateTime.now().toUtc();
@@ -221,5 +224,29 @@ Future<File?> downloadFile(String name) async {
 Future openFile({required String name}) async {
   final file = await downloadFile(name);
   if (file == null) return;
-  await OpenFile.open(file.path);
+  print(file.path);
+  //await OpenFile.open(file.path);
+  await OpenFilex.open(file.path);
+}
+
+Future shareInvoiceByteList({required String name}) async {
+  final file = await downloadFile(name);
+  if (file == null) return null;
+  var document = await PdfDocument.openData(file.readAsBytes());
+  if (document.pagesCount == 0){
+    return null;
+  }
+
+  List<XFile> files = [];
+
+  for(int _pageCount=1; _pageCount<= document.pagesCount; _pageCount++){
+    var page = await document.getPage(_pageCount);
+    if( document.pagesCount > 1){
+      document = await PdfDocument.openData(file.readAsBytes());
+    }
+    
+    var pageImage = await page.render(width: page.width, height: page.height,format: PdfPageImageFormat.png);
+    files.add(XFile.fromData(pageImage!.bytes, mimeType: 'image/png'));
+  }  
+    await Share.shareXFiles(files, text: '');
 }
