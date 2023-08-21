@@ -454,6 +454,8 @@ abstract class BaseLanguage {
   String get signupForBetterExperience;
 
   String get iAgreeToThe;
+  String get lblToDate;
+  String get lblFromDate;
 
   String get termsOfService;
 
@@ -526,4 +528,10 @@ abstract class BaseLanguage {
   String get purchase;
 
   String get alreadyPurchased;
+
+  String get lblVoucher;
+  String get lblVoucherNo;
+  String get lblDate;
+  String get lblDebit;
+  String get lblCredit;
 }

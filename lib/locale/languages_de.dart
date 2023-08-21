@@ -35,7 +35,31 @@ class LanguageDe extends BaseLanguage {
   @override
   // TODO: implement lblRecommendations
   String get lblRecommendations => 'Recommendations and Suggestions';
+  @override
+  // TODO: implement lblFromDate
+  String get lblFromDate => "From Date";
+    @override
+  // TODO: implement lblCredit
+  String get lblCredit => 'Credit';
   
+  @override
+  // TODO: implement lblDate
+  String get lblDate => 'Date';
+  
+  @override
+  // TODO: implement lblDebit
+  String get lblDebit => 'Debit';
+  
+  @override
+  // TODO: implement lblVoucher
+  String get lblVoucher => 'Voucher';
+  
+  @override
+  // TODO: implement lblVoucherNo
+  String get lblVoucherNo => 'Voucher No';
+  @override
+  // TODO: implement lblToDate
+  String get lblToDate => "To Date";
   @override
   // TODO: implement lblSubject
   String get lblSubject => 'Subject';

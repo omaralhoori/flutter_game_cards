@@ -489,7 +489,7 @@ class LanguageAr extends BaseLanguage {
   String get lblSettings => "إعدادات";
 
   @override
-  String get lblTransactionHistory => "تاريخ المعاملة";
+  String get lblTransactionHistory => "تقرير الحركات";
 
   @override
   String get lblNoTransactionDataFound => "لم يتم العثور على بيانات المعاملة";
@@ -792,4 +792,34 @@ class LanguageAr extends BaseLanguage {
   @override
   // TODO: implement msgSuccessRecommendation
   String get msgSuccessRecommendation => "تم مشاركة التوصية بنجاح";
+  
+  @override
+  // TODO: implement lblFromDate
+  String get lblFromDate => "من تاريخ";
+  
+  @override
+  // TODO: implement lblToDate
+  String get lblToDate => "إلى تاريخ";
+  
+  @override
+  // TODO: implement lblCredit
+  String get lblCredit => 'له';
+  
+  @override
+  // TODO: implement lblDate
+  String get lblDate => "تاريخ";
+  
+  @override
+  // TODO: implement lblDebit
+  String get lblDebit => "منه";
+  
+  @override
+  // TODO: implement lblVoucher
+  String get lblVoucher => "نوع الفاتورة";
+  
+  @override
+  // TODO: implement lblVoucherNo
+  String get lblVoucherNo => "رقم الفاتورة";
+
+
 }

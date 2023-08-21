@@ -15,6 +15,7 @@ import 'package:bookkart_flutter/screens/bookmark/view/my_bookmark_screen.dart';
 import 'package:bookkart_flutter/screens/dashboard/view/dashboardFragment/category_list_fragment_screen.dart';
 import 'package:bookkart_flutter/screens/language_screen.dart';
 import 'package:bookkart_flutter/screens/settings/view/recommendations_screen.dart';
+import 'package:bookkart_flutter/screens/settings/view/transactions_report_screen.dart';
 import 'package:bookkart_flutter/screens/transaction/view/my_cart_screen.dart';
 import 'package:bookkart_flutter/screens/transaction/view/transaction_history_screen.dart';
 import 'package:bookkart_flutter/utils/colors.dart';
@@ -279,7 +280,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                   return;
                                 }
 
-                                RecommendationsScreen().launch(context);
+                                TransactionsReportScreen().launch(context);
                               },
                             ),
                           ],
