@@ -244,8 +244,10 @@ Future shareInvoiceByteList({required String name}) async {
     if( document.pagesCount > 1){
       document = await PdfDocument.openData(file.readAsBytes());
     }
-    
-    var pageImage = await page.render(width: page.width, height: page.height,format: PdfPageImageFormat.png);
+    double aspectRatio = page.width / page.height;
+    double height = 1000;
+    double width = height * aspectRatio;
+    var pageImage = await page.render(width: width, height: height,format: PdfPageImageFormat.png);
     files.add(XFile.fromData(pageImage!.bytes, mimeType: 'image/png'));
   }  
     await Share.shareXFiles(files, text: '');

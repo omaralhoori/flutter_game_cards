@@ -197,9 +197,9 @@ class TransactionsReportDataTable extends StatelessWidget {
                     DataCell(Text(transactions[index].voucher)),
                     DataCell(Text(transactions[index].voucherNo ?? '')),
                     DataCell(Text(transactions[index].date ?? '')),
-                    DataCell(Text(transactions[index].debit.toString())),
-                    DataCell(Text(transactions[index].credit.toString())),
-                    DataCell(Text(transactions[index].balance.toString()))
+                    DataCell(Text(transactions[index].debit.toStringAsFixed(2))),
+                    DataCell(Text(transactions[index].credit.toStringAsFixed(2))),
+                    DataCell(Text(transactions[index].balance.toStringAsFixed(2)))
                   ]))),
     );
   }
