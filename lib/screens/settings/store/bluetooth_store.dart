@@ -5,6 +5,7 @@ import 'package:esc_pos_utils_plus/esc_pos_utils.dart';
 import 'package:flutter/services.dart';
 import 'package:mobx/mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:print_bluetooth_thermal/print_bluetooth_thermal.dart';
 
 import 'package:image/image.dart' as img;
@@ -35,6 +36,15 @@ abstract class _BluetoothStore with Store {
 
   @action
   Future<void> init() async {
+    if (!(await PrintBluetoothThermal.isPermissionBluetoothGranted))
+    {
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.bluetooth,
+        Permission.nearbyWifiDevices,
+        Permission.bluetoothConnect,
+        Permission.bluetoothScan,
+      ].request();
+    }
     String mac = getSelectedBluetoothDevice();
     if (mac != ''){
       await connect(mac);
@@ -164,21 +174,34 @@ abstract class _BluetoothStore with Store {
     //bytes += generator.setGlobalFont(PosFontType.fontA);
     bytes += generator.reset();
     if(appStore.userProfileImage != ''){
-      final Uint8List bytesImg = (await NetworkAssetBundle(Uri.parse(formatImageUrl(appStore.userProfileImage)))
+      try{
+ final Uint8List bytesImg = (await NetworkAssetBundle(Uri.parse(formatImageUrl(appStore.userProfileImage)))
     .load(formatImageUrl(appStore.userProfileImage))).buffer.asUint8List();
-    
     img.Image? image = img.decodeImage(bytesImg);
-     if(image !=null)
-    bytes += generator.image(image);
+  //   final ByteData data = await rootBundle.load('assets/images/logo.jpg');
+  // final Uint8List imgBytes = data.buffer.asUint8List();
+  // final img.Image? image = img.decodeImage(imgBytes)!;
+     if(image !=null){
+     bytes += generator.imageRaster(image);
+     }
+      }catch(e){
+
+      }
+     
+   
     }
        
 
     bytes += generator.text('Order Number', styles: PosStyles(align: PosAlign.center), linesAfter: 1);
     bytes += generator.text(invoices[0].invoiceId, styles: PosStyles(align: PosAlign.center), linesAfter: 1);
+    bytes += generator.text("${invoices[0].postingDate} ${invoices[0].postingTime}" , styles: PosStyles(
+      align: PosAlign.center,), linesAfter: 1);
+      bytes += generator.text("---------------------------", styles: PosStyles(align: PosAlign.center), linesAfter: 1);
     for (var invoice in invoices){
       bytes += generator.text(invoice.itemCode, styles: PosStyles(align: PosAlign.center), linesAfter: 1);
       bytes += generator.text(invoice.serialNo, styles: PosStyles(align: PosAlign.center), linesAfter: 1);
       bytes += generator.qrcode(invoice.serialNo,align: PosAlign.center);
+      bytes += generator.text("---------------------------", styles: PosStyles(align: PosAlign.center), linesAfter: 1);
     }
 
     bytes += generator.feed(2);
