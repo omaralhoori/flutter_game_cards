@@ -72,6 +72,22 @@ mixin _$CartStore on _CartStore, Store {
     });
   }
 
+  late final _$customerBalanceAtom =
+      Atom(name: '_CartStore.customerBalance', context: context);
+
+  @override
+  double get customerBalance {
+    _$customerBalanceAtom.reportRead();
+    return super.customerBalance;
+  }
+
+  @override
+  set customerBalance(double value) {
+    _$customerBalanceAtom.reportWrite(value, super.customerBalance, () {
+      super.customerBalance = value;
+    });
+  }
+
   late final _$initAsyncAction =
       AsyncAction('_CartStore.init', context: context);
 
@@ -137,7 +153,8 @@ mixin _$CartStore on _CartStore, Store {
 cartList: ${cartList},
 totalAmount: ${totalAmount},
 isAddToCart: ${isAddToCart},
-bookId: ${bookId}
+bookId: ${bookId},
+customerBalance: ${customerBalance}
     ''';
   }
 }

@@ -25,6 +25,7 @@ class InvoiceDetailScreen extends StatefulWidget {
 
 class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
   Future<List<InvoiceModel>>? future;
+  List<InvoiceModel> invoices = [];
    @override
   void initState() {
     super.initState();
@@ -46,10 +47,19 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
           icon: Icon(Icons.share)),
         IconButton(
           onPressed: () async{
+           bool printed = await bluetoothStore.printInvoices(invoices);
+           if (!printed){
+            toast("Please check bluetooth printer in settings");
+           }
+          }, 
+          iconSize: 28,
+          icon: Icon(Icons.print)),
+        IconButton(
+          onPressed: () async{
            await cartStore.printInvoice(widget.invoiceId);
           }, 
           iconSize: 28,
-          icon: Icon(Icons.print))
+          icon: Icon(Icons.download)),
       ],),
       body: NoInternetFound(
         child: SnapHelperWidget<List<InvoiceModel>>(
@@ -64,6 +74,7 @@ class _InvoiceDetailScreenState extends State<InvoiceDetailScreen> {
                 showLoadingWhileNotLoading: true,
               ).paddingOnly(top: 16, left: 16);
             }
+            invoices = snap;
 
             return AnimatedScrollView(
               padding: EdgeInsets.only(bottom: 16),

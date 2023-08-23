@@ -14,6 +14,7 @@ import 'package:bookkart_flutter/screens/bookDescription/view/list_view_all_invo
 import 'package:bookkart_flutter/screens/bookmark/view/my_bookmark_screen.dart';
 import 'package:bookkart_flutter/screens/dashboard/view/dashboardFragment/category_list_fragment_screen.dart';
 import 'package:bookkart_flutter/screens/language_screen.dart';
+import 'package:bookkart_flutter/screens/settings/view/bluetooth_scan_screen.dart';
 import 'package:bookkart_flutter/screens/settings/view/recommendations_screen.dart';
 import 'package:bookkart_flutter/screens/settings/view/transactions_report_screen.dart';
 import 'package:bookkart_flutter/screens/transaction/view/my_cart_screen.dart';
@@ -23,6 +24,7 @@ import 'package:bookkart_flutter/utils/common_base.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
 import 'package:bookkart_flutter/utils/extensions/string_extension.dart';
 import 'package:bookkart_flutter/utils/images.dart';
+import 'package:bookkart_flutter/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -128,10 +130,11 @@ class _SettingScreenState extends State<SettingScreen> {
                                // await EditProfileScreen().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
                               },
                               child: Observer(builder: (context) {
+                                print(formatImageUrl(appStore.avatar));
                                 return Container(
                                   decoration: boxDecorationWithRoundedCorners(boxShape: BoxShape.circle, border: Border.all(color: context.primaryColor, width: 3)),
                                   child: CachedImageWidget(
-                                    url: appStore.userProfileImage.validate(value: appStore.avatar),
+                                    url: formatImageUrl(appStore.userProfileImage).validate(value: appStore.avatar),
                                     height: 90,
                                     fit: BoxFit.cover,
                                     circle: true,
@@ -152,7 +155,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           ],
                         ),
                         16.height,
-                        Text(appStore.displayName.validate(value: locale.lblGuest), style: primaryTextStyle()),
+                        Text(appStore.userFullName.validate(value: locale.lblGuest), style: primaryTextStyle()),
                         Text(appStore.userEmail.validate(value: locale.lblEmailId), style: primaryTextStyle()),
                       ],
                     ),
@@ -281,6 +284,21 @@ class _SettingScreenState extends State<SettingScreen> {
                                 }
 
                                 TransactionsReportScreen().launch(context);
+                              },
+                            ),
+                            SettingItemWidget(
+                              title: 'Connect Bluetooth Printer',
+                              leading: ic_search.iconImage(size: SETTING_ICON_SIZE.toDouble()),
+                              decoration: BoxDecoration(borderRadius: radius()),
+                              trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
+                              onTap: () {
+                                if (!appStore.isNetworkAvailable) {
+                                  toast("Internet is Not Available");
+                                  appStore.setLoading(false);
+                                  return;
+                                }
+
+                                BluetoothScanScreen().launch(context);
                               },
                             ),
                           ],

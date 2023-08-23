@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bookkart_flutter/locale/language_en.dart';
+import 'package:bookkart_flutter/screens/settings/store/bluetooth_store.dart';
 import 'package:bookkart_flutter/screens/splash_screen.dart';
 import 'package:bookkart_flutter/screens/transaction/services/inAppPurchase/in_app_puchase.dart';
 import 'package:bookkart_flutter/utils/app_theme.dart';
@@ -22,6 +23,7 @@ import 'utils/database_helper.dart';
 AppStore appStore = AppStore();
 CartStore cartStore = CartStore();
 ApiStore apiStore = ApiStore();
+BluetoothStore bluetoothStore = BluetoothStore();
 InAppPurchaseService purchaseService = InAppPurchaseService();
 
 List<OfflineBookList> downloadedList = <OfflineBookList>[];
@@ -71,6 +73,8 @@ void main() async {
     await appStore.setAvatar(getStringAsync(AVATAR));
     await appStore.setPaymentMethod(getStringAsync(PAYMENT_METHOD), isInitializing: true);
   }
+
+  await bluetoothStore.init();
 
   runApp(MyApp());
 }
