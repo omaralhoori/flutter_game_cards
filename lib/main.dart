@@ -64,6 +64,7 @@ void main() async {
     await appStore.setFirstName(getStringAsync(FIRST_NAME), isInitializing: true);
     await appStore.setLastName(getStringAsync(LAST_NAME), isInitializing: true);
     await appStore.setContactNumber(getStringAsync(CONTACT_NUMBER), isInitializing: true);
+    await appStore.setWebsite(getStringAsync(USER_WEBSITE), isInitializing: true);
     await appStore.setUserId(getIntAsync(USER_ID), isInitializing: true);
     await appStore.setLoginType(getStringAsync(LOGIN_TYPE), isInitializing: true);
     await appStore.setUserType(getStringAsync(USER_TYPE), isInitializing: true);

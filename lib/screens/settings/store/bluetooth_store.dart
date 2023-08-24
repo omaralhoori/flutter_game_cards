@@ -1,5 +1,6 @@
 import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/bookDescription/model/invoice_model.dart';
+import 'package:bookkart_flutter/utils/constants.dart';
 import 'package:bookkart_flutter/utils/utils.dart';
 import 'package:esc_pos_utils_plus/esc_pos_utils.dart';
 import 'package:flutter/services.dart';
@@ -203,6 +204,10 @@ abstract class _BluetoothStore with Store {
       bytes += generator.qrcode(invoice.serialNo,align: PosAlign.center);
       bytes += generator.text("---------------------------", styles: PosStyles(align: PosAlign.center), linesAfter: 1);
     }
+    if(appStore.userContactNumber != '')
+      bytes += generator.text(appStore.userContactNumber, styles: PosStyles(align: PosAlign.center), linesAfter: 1);
+    if(appStore.userWebsite != '')
+      bytes += generator.text(appStore.userWebsite, styles: PosStyles(align: PosAlign.center), linesAfter: 1);
 
     bytes += generator.feed(2);
     //bytes += generator.cut();

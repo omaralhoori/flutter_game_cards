@@ -336,6 +336,22 @@ mixin _$AppStore on _AppStore, Store {
     });
   }
 
+  late final _$userWebsiteAtom =
+      Atom(name: '_AppStore.userWebsite', context: context);
+
+  @override
+  String get userWebsite {
+    _$userWebsiteAtom.reportRead();
+    return super.userWebsite;
+  }
+
+  @override
+  set userWebsite(String value) {
+    _$userWebsiteAtom.reportWrite(value, super.userWebsite, () {
+      super.userWebsite = value;
+    });
+  }
+
   late final _$currentEpubPageAtom =
       Atom(name: '_AppStore.currentEpubPage', context: context);
 
@@ -738,6 +754,15 @@ mixin _$AppStore on _AppStore, Store {
         .run(() => super.setContactNumber(val, isInitializing: isInitializing));
   }
 
+  late final _$setWebsiteAsyncAction =
+      AsyncAction('_AppStore.setWebsite', context: context);
+
+  @override
+  Future<void> setWebsite(String val, {bool isInitializing = false}) {
+    return _$setWebsiteAsyncAction
+        .run(() => super.setWebsite(val, isInitializing: isInitializing));
+  }
+
   late final _$setUserNameAsyncAction =
       AsyncAction('_AppStore.setUserName', context: context);
 
@@ -885,6 +910,7 @@ userName: ${userName},
 token: ${token},
 playerId: ${playerId},
 userType: ${userType},
+userWebsite: ${userWebsite},
 currentEpubPage: ${currentEpubPage},
 cartCount: ${cartCount},
 selectedLanguage: ${selectedLanguage},

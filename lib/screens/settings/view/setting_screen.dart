@@ -155,7 +155,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           ],
                         ),
                         16.height,
-                        Text(appStore.userFullName.validate(value: locale.lblGuest), style: primaryTextStyle()),
+                        Text(appStore.userName.validate(value: locale.lblGuest), style: primaryTextStyle()),
                         Text(appStore.userEmail.validate(value: locale.lblEmailId), style: primaryTextStyle()),
                       ],
                     ),

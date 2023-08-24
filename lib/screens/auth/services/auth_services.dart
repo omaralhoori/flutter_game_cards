@@ -148,6 +148,8 @@ Future<void> setUserInfo(LoginResponse response, {String password = "", String u
   await appStore.setAvatar(response.avatar.validate());
   await appStore.setDisplayName(response.userDisplayName.validate());
   await appStore.setPassword(password);
+  await appStore.setContactNumber(response.mobileNo.validate());
+  await appStore.setWebsite(response.website.validate());
   await appStore.setLoggedIn(true);
   await appStore.setAvatar(response.avatar.validate());
 

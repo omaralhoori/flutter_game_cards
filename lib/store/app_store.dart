@@ -79,6 +79,10 @@ abstract class _AppStore with Store {
   @observable
   String userType = '';
 
+
+  @observable
+  String userWebsite = '';
+
   @observable
   String currentEpubPage = '';
 
@@ -213,6 +217,13 @@ abstract class _AppStore with Store {
     userContactNumber = val;
     if (!isInitializing) await setValue(CONTACT_NUMBER, val);
   }
+
+  @action
+  Future<void> setWebsite(String val, {bool isInitializing = false}) async {
+    userWebsite = val;
+    if (!isInitializing) await setValue(USER_WEBSITE, val);
+  }
+
 
   @action
   Future<void> setUserName(String val, {bool isInitializing = false}) async {

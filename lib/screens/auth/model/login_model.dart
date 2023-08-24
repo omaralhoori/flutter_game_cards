@@ -5,6 +5,8 @@ class LoginResponse {
   String? userDisplayName;
   String? firstName;
   String? lastName;
+  String? mobileNo;
+  String? website;
 
   int? userId;
   String? avatar;
@@ -19,6 +21,8 @@ class LoginResponse {
     userDisplayName = json['fullname'];
     firstName = json['first_name'];
     lastName = json['last_name'];
+    mobileNo = json['mobile_no'];
+    website = json['website'];
     //userId = json['username'];
     avatar = json['image'];
     profileImage = json['image'];
