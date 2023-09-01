@@ -192,7 +192,7 @@ abstract class _BluetoothStore with Store {
    
     }
        
-
+    bytes += generator.text('', styles: PosStyles(align: PosAlign.center), linesAfter: 1);
     bytes += generator.text('Order Number', styles: PosStyles(align: PosAlign.center), linesAfter: 1);
     bytes += generator.text(invoices[0].invoiceId, styles: PosStyles(align: PosAlign.center), linesAfter: 1);
     bytes += generator.text("${invoices[0].postingDate} ${invoices[0].postingTime}" , styles: PosStyles(

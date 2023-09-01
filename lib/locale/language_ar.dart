@@ -172,7 +172,7 @@ class LanguageAr extends BaseLanguage {
   String get lblYourPurchasedLibrary => "مكتبتك المشتراة";
 
   @override
-  String get lblLogout => "تسجيل خروج";
+  String get lblLogout => "تسجيل الخروج";
 
   @override
   String get lblTermPrivacy => "المصطلح والخصوصية";
@@ -214,7 +214,7 @@ class LanguageAr extends BaseLanguage {
   String get lblSearchByCategories => "البحث حسب الفئات";
 
   @override
-  String get lblAreYourLogout => "هل أنت متأكد من تريد تسجيل الدخول؟";
+  String get lblAreYourLogout => "هل أنت متأكد من تسجيل الخروج؟";
 
   @override
   String get lblYes => "نعم";
@@ -820,6 +820,10 @@ class LanguageAr extends BaseLanguage {
   @override
   // TODO: implement lblVoucherNo
   String get lblVoucherNo => "رقم الفاتورة";
+  
+  @override
+  // TODO: implement lblConnectBluetoothPrinter
+  String get lblConnectBluetoothPrinter => 'توصيل طابعة بلوتوث';
 
 
 }

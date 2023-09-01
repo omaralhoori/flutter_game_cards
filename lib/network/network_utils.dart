@@ -334,10 +334,12 @@ Future logout(BuildContext context) async {
     context,
     title: locale.lblAreYourLogout,
     primaryColor: context.primaryColor,
+    negativeText: locale.lblCancel,
+    positiveText: locale.lblYes,
     onAccept: (e) async {
       await appStore.setLoggedIn(false);
-      await cartStore.removeCart();
-      await purchaseService.dispose();
+      await cartStore.cleanCart();
+      // await purchaseService.dispose();
       await appStore.setUserName('');
       await appStore.setToken('');
       await appStore.setFirstName('');
@@ -349,7 +351,7 @@ Future logout(BuildContext context) async {
       await appStore.setUserProfile('');
       await appStore.setSocialLogin(false);
       appStore.setLoading(false);
-      await DashboardScreen().launch(context, isNewTask: true);
+      await SignInScreen().launch(context, isNewTask: true);
     },
   );
 }

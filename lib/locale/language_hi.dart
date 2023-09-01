@@ -154,6 +154,10 @@ class LanguageHi extends BaseLanguage {
   @override
   // TODO: implement lblVoucher
   String get lblVoucher => 'Voucher';
+
+  @override
+  // TODO: implement lblConnectBluetoothPrinter
+  String get lblConnectBluetoothPrinter => "Connect Bluetooth Printer";
   
   @override
   // TODO: implement lblVoucherNo

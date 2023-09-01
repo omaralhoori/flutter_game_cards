@@ -287,7 +287,7 @@ class _SettingScreenState extends State<SettingScreen> {
                               },
                             ),
                             SettingItemWidget(
-                              title: 'Connect Bluetooth Printer',
+                              title: locale.lblConnectBluetoothPrinter,
                               leading: ic_search.iconImage(size: SETTING_ICON_SIZE.toDouble()),
                               decoration: BoxDecoration(borderRadius: radius()),
                               trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
@@ -335,6 +335,15 @@ class _SettingScreenState extends State<SettingScreen> {
                         leading: ic_theme.iconImage(size: SETTING_ICON_SIZE.toDouble()),
                         onTap: appThemTap,
                       ),
+                           if (appStore.isLoggedIn)
+                        SettingItemWidget(
+                          title: locale.lblLogout,
+                          leading: ic_logout.iconImage(size: SETTING_ICON_SIZE.toDouble()),
+                          decoration: BoxDecoration(borderRadius: radius()),
+                          onTap: () {
+                            logout(context);
+                          },
+                        ),
                     ],
                   ),
                   // SettingSection(
@@ -407,15 +416,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   //         ),
                   //         onTap: deleteAccountTap,
                   //       ),
-                  //     if (appStore.isLoggedIn)
-                  //       SettingItemWidget(
-                  //         title: locale.lblLogout,
-                  //         leading: ic_logout.iconImage(size: SETTING_ICON_SIZE.toDouble()),
-                  //         decoration: BoxDecoration(borderRadius: radius()),
-                  //         onTap: () {
-                  //           logout(context);
-                  //         },
-                  //       ),
+                 
                   //     150.height.visible(!appStore.isLoggedIn),
                   //     VersionInfoWidget(prefixText: 'v', textStyle: secondaryTextStyle(size: 14)).center(),
                   //   ],

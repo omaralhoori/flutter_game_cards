@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'dart:io';
 import 'package:bookkart_flutter/main.dart';
+import 'package:bookkart_flutter/screens/bookDescription/model/invoice_model.dart';
 import 'package:bookkart_flutter/utils/colors.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -134,6 +135,11 @@ class _BluetoothScanScreenState extends State<BluetoothScanScreen> {
                         onPressed: bluetoothStore.connected ? this.disconnect : null,
                         child: Text("Disconnect"),
                       ),
+                      ElevatedButton(
+                        style: ButtonStyle(backgroundColor: MaterialStateColor.resolveWith((states) => primaryColor)),
+                        onPressed: bluetoothStore.connected ? this.testPrinter : null,
+                        child: Text("Print Test"),
+                      ),
                     ],
                   ),
                   Container(
@@ -195,6 +201,22 @@ class _BluetoothScanScreenState extends State<BluetoothScanScreen> {
 
   Future<void> disconnect() async {
     await bluetoothStore.disconnect();
+  }
+
+  Future<void> testPrinter() async {
+    List<InvoiceModel> invoices = [];
+    invoices.add(InvoiceModel(
+        invoiceId: "ACC-SINV-2023-00030",
+        grandTotal: 12,
+        image: "",
+        itemCode: "PSN-10USD",
+        itemRate: 12,
+        postingDate: "2023-08-19",
+        postingTime: "11:02:37",
+        qty: 1,
+        serialNo: "12cc-66qq"
+    ));
+    await bluetoothStore.printInvoices(invoices);
   }
 
   // Future<void> printTest() async {

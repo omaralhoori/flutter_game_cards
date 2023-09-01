@@ -816,4 +816,8 @@ class LanguageEn extends BaseLanguage {
   @override
   // TODO: implement lblVoucherNo
   String get lblVoucherNo => 'Voucher No';
+  
+  @override
+  // TODO: implement lblConnectBluetoothPrinter
+  String get lblConnectBluetoothPrinter => "Connect Bluetooth Printer";
 }

@@ -151,6 +151,8 @@ abstract class BaseLanguage {
 
   String get lblMoreThanICanSay;
 
+  String get lblConnectBluetoothPrinter;
+
   String get lblWriteReview;
 
   String get lblPaymentCancelled;
