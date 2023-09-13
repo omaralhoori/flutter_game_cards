@@ -333,8 +333,8 @@ class BookDesign extends StatelessWidget {
               Stack(
                 children: [
                   Container(
-                    height: 150,
-                    width: 100,
+                    height: 120,
+                    width: 120,
                     margin: EdgeInsets.only(left: 14, bottom: 8, top: 4),
                     decoration: boxDecorationWithRoundedCorners(
                       backgroundColor: context.scaffoldBackgroundColor,
@@ -348,8 +348,8 @@ class BookDesign extends StatelessWidget {
                     top: 10,
                     bottom: 4,
                     child: Container(
-                      height: 150,
-                      width: 100,
+                      height: 120,
+                      width: 120,
                       decoration: boxDecorationWithRoundedCorners(
                         backgroundColor: context.scaffoldBackgroundColor,
                         borderRadius: BorderRadius.circular(8),
@@ -360,12 +360,13 @@ class BookDesign extends StatelessWidget {
                   Positioned(
                     top: 16,
                     bottom: 0,
+                    left: 0,
                     child: Container(
                       decoration: boxDecorationWithRoundedCorners(borderRadius: radius(8)),
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       child: CachedImageWidget(
-                        height: 150,
-                        width: 100,
+                        height: 120,
+                        width: 120,
                         url: formatImageUrl(data.image.validate()),
                         fit: BoxFit.fill,
                       ),
@@ -423,12 +424,12 @@ class BookDesignSecond extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 150,
-                    width: 100,
+                    height: 120,
+                    width: 120,
                     decoration: boxDecorationWithRoundedCorners(borderRadius: radius(10)),
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     margin: EdgeInsets.only(bottom: 16),
-                    child: CachedImageWidget(width: 100, height: 150, url: data.image.validate(), fit: BoxFit.fill),
+                    child: CachedImageWidget(width: 100, height: 150, url: formatImageUrl( data.image.validate()), fit: BoxFit.fill),
                   ),
                 ],
               ),

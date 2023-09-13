@@ -100,7 +100,7 @@ class _DescriptionComponentState extends State<DescriptionComponent> {
           ),
           if (!getBoolAsync(HAS_IN_REVIEW))
             Text(
-              (widget.bookInfo.projectedQty == 0) ? locale.avlblSoon : widget.bookInfo.price.validate().toString().getFormattedPrice(),
+              (widget.bookInfo.projectedQty == 0) ? locale.avlblSoon : "${widget.bookInfo.price.validate().toString().getFormattedPrice()} ${widget.bookInfo.currency.validate()}",
               style: boldTextStyle(color: context.primaryColor, size: 20),
             )
           else

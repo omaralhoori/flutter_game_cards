@@ -45,7 +45,7 @@ class _BookDescriptionTopComponentState extends State<BookDescriptionTopComponen
               clipBehavior: Clip.antiAliasWithSaveLayer,
               margin: EdgeInsets.only(bottom: 16),
               decoration: boxDecorationWithRoundedCorners(borderRadius: radius(10)),
-              child: CachedImageWidget(width: 100, height: 140, fit: BoxFit.fill, url: formatImageUrl(widget.bookInfo.image.validate())),
+              child: CachedImageWidget(width: 120, height: 120, fit: BoxFit.fill, url: formatImageUrl(widget.bookInfo.image.validate())),
             ),
           ],
         ),
