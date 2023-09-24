@@ -99,6 +99,8 @@ abstract class BaseLanguage {
 
   String get lblRememberMe;
 
+  String get lblPwdMustCntn;
+
   String get lblSignIn;
 
   String get lblForgotPassword;

@@ -39,9 +39,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       formKey.currentState!.save();
       if (newPasswordCont.text == confirmPasswordCont.text) {
         Map<String, String> request = {
-          'password': oldPasswordCont.text,
+          'old_password': oldPasswordCont.text,
           'new_password': newPasswordCont.text,
-          'username': appStore.userEmail,
         };
 
         appStore.setLoading(true);
@@ -79,7 +78,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     16.height,
-                    Text(locale.lblNewPwdMustDiff, style: secondaryTextStyle()),
+                    Center(child: Text(locale.lblNewPwdMustDiff, style: secondaryTextStyle())),
+                    Center(child: Text(locale.lblPwdMustCntn, style: secondaryTextStyle())),
                     16.height,
                     AppTextField(
                       controller: oldPasswordCont,
@@ -116,7 +116,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       color: context.primaryColor,
                       width: context.width(),
                       textColor: Colors.white,
-                      text: locale.lblSubmit,
+                      text: locale.lblSave,
                       onTap: submit,
                     ),
                   ],

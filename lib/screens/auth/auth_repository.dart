@@ -58,7 +58,7 @@ Future<LoginResponse> socialLoginApi(Map request) async {
 
 Future<BaseResponseModel> changePassword(Map<String, dynamic> request) async {
   log('CHANGE-PASSWORD-API');
-  return BaseResponseModel.fromJson(await responseHandler(await APICall().postMethod('iqonic-api/api/v1/woocommerce/change-password', request, requireToken: true)));
+  return BaseResponseModel.fromJson(await responseHandler(await APICall().postMethod('erpnext.api.auth.change_password', request,)));
 }
 
 Future<Customer> getCustomer(int? id) async {

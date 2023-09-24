@@ -303,22 +303,22 @@ class _SettingScreenState extends State<SettingScreen> {
                             ),
                           ],
                         ),
-                      // if (appStore.isLoggedIn && !appStore.isSocialLogin)
-                      //   SettingItemWidget(
-                      //     title: locale.lblChangePwd,
-                      //     leading: ic_change_password.iconImage(size: SETTING_ICON_SIZE.toDouble()),
-                      //     decoration: BoxDecoration(borderRadius: radius()),
-                      //     trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
-                      //     onTap: () {
-                      //       if (!appStore.isNetworkAvailable) {
-                      //         toast("Internet is Not Available");
-                      //         appStore.setLoading(false);
-                      //         return;
-                      //       }
+                      if (appStore.isLoggedIn )
+                        SettingItemWidget(
+                          title: locale.lblChangePwd,
+                          leading: ic_change_password.iconImage(size: SETTING_ICON_SIZE.toDouble()),
+                          decoration: BoxDecoration(borderRadius: radius()),
+                          trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
+                          onTap: () {
+                            if (!appStore.isNetworkAvailable) {
+                              toast("Internet is Not Available");
+                              appStore.setLoading(false);
+                              return;
+                            }
 
-                      //       ChangePasswordScreen().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
-                      //     },
-                      //   ),
+                            ChangePasswordScreen().launch(context, pageRouteAnimation: PageRouteAnimation.Slide);
+                          },
+                        ),
                       SettingItemWidget(
                         leading: ic_translation.iconImage(size: SETTING_ICON_SIZE.toDouble()),
                         title: locale.language,

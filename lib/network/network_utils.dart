@@ -97,9 +97,7 @@ class APICall {
     }
 
     Client client = Client();
-    print("999999999999999999");
-    print(Uri.parse(url));
-    print(jsonEncode(data));
+
     Response response = await client.post(Uri.parse(url), body: jsonEncode(data), headers: headers);
 
     log('TOKEN: ${headers['token']}\n');

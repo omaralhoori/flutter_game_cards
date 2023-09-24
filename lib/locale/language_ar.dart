@@ -127,7 +127,7 @@ class LanguageAr extends BaseLanguage {
   String get lblEditProfile => "تعديل الملف الشخصي";
 
   @override
-  String get lblSave => "يحفظ";
+  String get lblSave => "حفظ";
 
   @override
   String get lblDownloadFailed => "التحميل فشل. الرجاء معاودة المحاولة في وقت لاحق";
@@ -824,6 +824,10 @@ class LanguageAr extends BaseLanguage {
   @override
   // TODO: implement lblConnectBluetoothPrinter
   String get lblConnectBluetoothPrinter => 'توصيل طابعة بلوتوث';
+  
+  @override
+  // TODO: implement lblConnectBluetoothPrinter
+  String get lblPwdMustCntn => 'كلمة السر يجب أن تحتوي على أرقام وحروف';
 
 
 }

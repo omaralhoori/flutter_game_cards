@@ -820,4 +820,9 @@ class LanguageEn extends BaseLanguage {
   @override
   // TODO: implement lblConnectBluetoothPrinter
   String get lblConnectBluetoothPrinter => "Connect Bluetooth Printer";
+
+
+  @override
+  // TODO: implement lblConnectBluetoothPrinter
+  String get lblPwdMustCntn => 'Password must contain numbers and letters';
 }
