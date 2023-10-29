@@ -6,6 +6,7 @@ import 'package:bookkart_flutter/screens/bookDescription/book_description_reposi
 import 'package:bookkart_flutter/screens/bookDescription/model/my_cart_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/transaction/transaction_repository.dart';
+import 'package:bookkart_flutter/screens/transaction/view/credit_card_screen.dart';
 import 'package:bookkart_flutter/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,13 +37,15 @@ abstract class _CartStore with Store {
 
   @action
   Future<void> init() async {
-    if (appStore.isLoggedIn) {
+    // if (appStore.isLoggedIn) {
       appStore.setLoading(true);
+    if (appStore.isLoggedIn) {
       await getCustomerBalance().then((value) {
         if(value['message']['balance'] != null){
           customerBalance = value['message']['balance'];
         }
       });
+    }
       await dbHelper.getCards().then((value){
 
         // if (value.validate().length != cartList.length) {
@@ -58,7 +61,7 @@ abstract class _CartStore with Store {
       });
 
       calculateTotal();
-    }
+    // }
   }
 
   @action
@@ -148,7 +151,7 @@ abstract class _CartStore with Store {
     return true;
   }
   Future<void> addToCart(BuildContext context, {required String bookId, required CardModel card}) async {
-    if (!appStore.isLoggedIn) SignInScreen().launch(context);
+    // if (!appStore.isLoggedIn) SignInScreen().launch(context);
 
 
     appStore.setLoading(true);
@@ -180,8 +183,9 @@ abstract class _CartStore with Store {
     // });
   }
 
-  Future<Map<String, dynamic>> checkoutCart() async {
-    if (this.customerBalance >= this.totalAmount){
+  Future<Map<String, dynamic>> checkoutCart(context) async {
+    if (appStore.isLoggedIn){
+      if (this.customerBalance >= this.totalAmount){
       appStore.setLoading(true);
        Map<String, dynamic> request = {
         "cart_items": this.cartList.map((e) => {"item_id": e.id, "item_qty": e.qty}).toList(),
@@ -196,6 +200,10 @@ abstract class _CartStore with Store {
         "error": locale.msgNoEnoughBalance//"You do not have enough balance"
       };
     }
+    }else{
+      return {};
+    }
+    
      
   }
 

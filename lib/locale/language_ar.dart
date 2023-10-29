@@ -828,6 +828,22 @@ class LanguageAr extends BaseLanguage {
   @override
   // TODO: implement lblConnectBluetoothPrinter
   String get lblPwdMustCntn => 'كلمة السر يجب أن تحتوي على أرقام وحروف';
+  
+  @override
+  // TODO: implement lblCardHolder
+  String get lblCardHolder => 'اسم حامل البطاقة';
+  
+  @override
+  // TODO: implement lblExprDate
+  String get lblExprDate => "تاريخ الإنتهاء";
+  
+  @override
+  // TODO: implement lblNumber
+  String get lblNumber => "رقم البطاقة";
+  
+  @override
+  // TODO: implement lblValidThru
+  String get lblValidThru => "صالح حتى";
 
 
 }

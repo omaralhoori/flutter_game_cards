@@ -320,7 +320,21 @@ class LanguageFr extends BaseLanguage {
   @override
   // TODO: implement lblDebit
   String get lblDebit => 'Debit';
+  @override
+  // TODO: implement lblCardHolder
+  String get lblCardHolder => 'Card Holder';
   
+  @override
+  // TODO: implement lblExprDate
+  String get lblExprDate => "Expiry Date";
+  
+  @override
+  // TODO: implement lblNumber
+  String get lblNumber => "Card Number";
+  
+  @override
+  // TODO: implement lblValidThru
+  String get lblValidThru => "Valid Thru";
   @override
   // TODO: implement lblVoucher
   String get lblVoucher => 'Voucher';

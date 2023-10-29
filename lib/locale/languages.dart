@@ -101,6 +101,11 @@ abstract class BaseLanguage {
 
   String get lblPwdMustCntn;
 
+  String get lblValidThru;
+  String get lblNumber;
+  String get lblExprDate;
+  String get lblCardHolder;
+
   String get lblSignIn;
 
   String get lblForgotPassword;

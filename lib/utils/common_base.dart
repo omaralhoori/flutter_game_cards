@@ -24,7 +24,6 @@ import 'package:html/parser.dart';
 import 'package:internet_file/internet_file.dart';
 import 'package:internet_file/storage_io.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vocsy_epub_viewer/epub_viewer.dart';
 
@@ -450,111 +449,6 @@ class BookDesignSecond extends StatelessWidget {
   }
 }
 
-class PurchaseProduct extends StatefulWidget {
-  PurchaseProduct();
-
-  @override
-  State<PurchaseProduct> createState() => _PurchaseProductState();
-}
-
-class _PurchaseProductState extends State<PurchaseProduct> {
-  Column get getSpace => Column(children: [8.height, Divider(), 8.height]);
-
-  @override
-  void initState() {
-    super.initState();
-    appStore.setLoading(false);
-  }
-
-  @override
-  void dispose() {
-    appStore.setLoading(false);
-    super.dispose();
-  }
-
-  Row offerText({required String offer}) {
-    return Row(
-      children: [
-        Icon(Icons.star, color: Color(0xFF73CB92)),
-        8.width,
-        Text(offer, style: primaryTextStyle(), textAlign: TextAlign.center),
-      ],
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        LayoutBuilder(builder: (context, c) {
-          final double boxHeight;
-          if ((c.maxWidth < 342)) {
-            boxHeight = context.height() * 0.5;
-          } else {
-            if ((c.maxWidth < 399)) {
-              boxHeight = context.height() * 0.41;
-            } else {
-              boxHeight = context.height() * 0.38;
-            }
-          }
-
-          return Container(
-            width: context.width() * 0.75,
-            constraints: BoxConstraints(maxHeight: boxHeight),
-            padding: EdgeInsets.all(16),
-            alignment: Alignment.topCenter,
-            decoration: boxDecorationWithRoundedCorners(
-              backgroundColor: context.scaffoldBackgroundColor,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: AnimatedListView(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemCount: purchaseService.listOfOffer.length,
-              physics: NeverScrollableScrollPhysics(),
-              addAutomaticKeepAlives: false,
-              addRepaintBoundaries: false,
-              listAnimationType: ListAnimationType.None,
-              itemBuilder: (_, p1) {
-                Package info = purchaseService.listOfOffer[0];
-
-                return Container(
-                  width: context.width() * 0.6,
-                  margin: EdgeInsets.symmetric(horizontal: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(info.storeProduct.title.split("(").first, style: boldTextStyle(size: 22), textAlign: TextAlign.start, maxLines: 2),
-                      getSpace,
-                      offerText(offer: "1 Account On Mobile Only"),
-                      offerText(offer: "One Time Payment"),
-                      offerText(offer: info.storeProduct.description),
-                      getSpace,
-                      Text("Price : ₹ ${info.storeProduct.price.toString()}", style: primaryTextStyle(), textAlign: TextAlign.center),
-                      getSpace,
-                      AppButton(
-                        width: context.width() * 0.75,
-                        child: Text("Buy $APP_NAME Pro", style: boldTextStyle(color: white), textAlign: TextAlign.center),
-                        shapeBorder: RoundedRectangleBorder(borderRadius: radius()),
-                        color: primaryColor,
-                        elevation: 0,
-                        onTap: () async {
-                          await purchaseService.makePayment(context, info);
-                        },
-                      ),
-                    ],
-                  ).center(),
-                );
-              },
-            ),
-          );
-        }),
-      ],
-    ).center();
-  }
-}
 
 Future<dynamic> buildPageChangeDialog(BuildContext context, Completer<PDFViewController> pdfController) {
   final TextEditingController textEditingCont = TextEditingController();

@@ -69,12 +69,13 @@ class _BookDescriptionScreenState extends State<BookDescriptionScreen> {
                 icon: Icon(Icons.shopping_cart_outlined),
                 padding: EdgeInsets.only(top: 12),
                 onPressed: () async {
-                  if (appStore.isLoggedIn) {
-                    await MyCartScreen(bookInfo: snap).launch(context);
+                  await MyCartScreen(bookInfo: snap).launch(context);
                     return;
-                  }
+                  // if (appStore.isLoggedIn) {
+                    
+                  // }
 
-                  await SignInScreen().launch(context);
+                  // await SignInScreen().launch(context);
                 },
               ),
             Container(

@@ -4,12 +4,9 @@ import 'package:bookkart_flutter/components/no_internet_component.dart';
 import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/screens/bookDescription/view/invoice_details_screen.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
-import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/screens/transaction/component/cart_component.dart';
-import 'package:bookkart_flutter/screens/transaction/component/payment_sheet_component.dart';
-import 'package:bookkart_flutter/screens/transaction/services/web_payment_services.dart';
+import 'package:bookkart_flutter/screens/transaction/view/credit_card_screen.dart';
 import 'package:bookkart_flutter/utils/common_base.dart';
-import 'package:bookkart_flutter/utils/constants.dart';
 import 'package:bookkart_flutter/utils/extensions/int_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -26,23 +23,32 @@ class MyCartScreen extends StatefulWidget {
 }
 
 class _MyCartScreenState extends State<MyCartScreen> {
-  Future<void> showDialog(BuildContext context) async {
+  Future<void> checkout(BuildContext context) async {
+   
+     if(appStore.isLoggedIn){
     showConfirmDialogCustom(
-                  title: locale.checkoutConfirm,
-                  context,
-                  dialogType: DialogType.CONFIRMATION,
-                  positiveText: locale.confirm,
-                  negativeText: locale.lblCancel,
-                  onAccept: (e) async {
-                    final res = await cartStore.checkoutCart();
-                    if (res['success_key'] == 0){
-                      toastLong(res['error']);
-                    }else{
-                      cartStore.cleanCart();
-                      InvoiceDetailScreen(invoiceId: res['invoice']).launch(context);
-                    }
-                  },
-                );
+        title: locale.checkoutConfirm,
+        context,
+        dialogType: DialogType.CONFIRMATION,
+        positiveText: locale.confirm,
+        negativeText: locale.lblCancel,
+        onAccept: (e) async {
+           
+        
+          final res = await cartStore.checkoutCart(context);
+          if (res['success_key'] == 0){
+            toastLong(res['error']);
+          }else if (res['success_key'] == 1){
+            cartStore.cleanCart();
+            InvoiceDetailScreen(invoiceId: res['invoice']).launch(context);
+          }
+          
+            },
+          );
+          }else{
+            CreditCardScreen(total: cartStore.totalAmount,).launch(context);
+            //
+          }
   }
 
   @override
@@ -131,7 +137,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                             color: context.primaryColor,
                             width: context.width(),
                             onTap: () {
-                              showDialog(context);
+                              checkout(context);
                             },
                           )
                         ],

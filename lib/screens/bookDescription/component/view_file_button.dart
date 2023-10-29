@@ -1,9 +1,5 @@
 import 'package:bookkart_flutter/main.dart';
-import 'package:bookkart_flutter/screens/auth/view/sign_in_screen.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
-import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
-import 'package:bookkart_flutter/screens/transaction/component/payment_sheet_component.dart';
-import 'package:bookkart_flutter/screens/transaction/view/my_cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -27,10 +23,10 @@ class _ViewFileButtonState extends State<ViewFileButton> {
   }
 
   Future<void> addToCart() async {
-    if (!appStore.isLoggedIn) {
-      SignInScreen().launch(context);
-      return;
-    }
+    // if (!appStore.isLoggedIn) {
+    //   SignInScreen().launch(context);
+    //   return;
+    // }
 
     // if ((cartStore.isCartItemPreExist(bookId: widget.bookInfo.id.validate().toInt()))) {
     //   await MyCartScreen(bookInfo: widget.bookInfo).launch(context);
@@ -48,23 +44,10 @@ class _ViewFileButtonState extends State<ViewFileButton> {
     });
   }
 
-  Future<void> buyNow({required CardModel bookInfo}) async {
-    if (appStore.isLoggedIn) {
-      await showModalBottomSheet(
-        context: context,
-        backgroundColor: Colors.transparent,
-        builder: (_) {
-          return PaymentSheetComponent(bookInfo: bookInfo, isSingleItem: true);
-        },
-      );
-    } else {
-      SignInScreen().launch(context);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.bookInfo.projectedQty == 0) return SizedBox(width: context.width());
+    if (widget.bookInfo.projectedQty == 0 || widget.bookInfo.price == null) return SizedBox(width: context.width());
 
     return Observer(builder: (_) {
       return Container(

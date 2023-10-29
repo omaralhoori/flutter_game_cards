@@ -825,4 +825,20 @@ class LanguageEn extends BaseLanguage {
   @override
   // TODO: implement lblConnectBluetoothPrinter
   String get lblPwdMustCntn => 'Password must contain numbers and letters';
+  
+  @override
+  // TODO: implement lblCardHolder
+  String get lblCardHolder => 'Card Holder';
+  
+  @override
+  // TODO: implement lblExprDate
+  String get lblExprDate => "Expiry Date";
+  
+  @override
+  // TODO: implement lblNumber
+  String get lblNumber => "Card Number";
+  
+  @override
+  // TODO: implement lblValidThru
+  String get lblValidThru => "Valid Thru";
 }

@@ -100,12 +100,12 @@ class _DescriptionComponentState extends State<DescriptionComponent> {
           ),
           if (!getBoolAsync(HAS_IN_REVIEW))
             Text(
-              (widget.bookInfo.projectedQty == 0) ? locale.avlblSoon : "${widget.bookInfo.price.validate().toString().getFormattedPrice()} ${widget.bookInfo.currency.validate()}",
+              (widget.bookInfo.projectedQty == 0 || widget.bookInfo.price == null) ? locale.avlblSoon : "${widget.bookInfo.price.validate().toString().getFormattedPrice()} ${widget.bookInfo.currency.validate()}",
               style: boldTextStyle(color: context.primaryColor, size: 20),
             )
           else
             Text('Free', style: boldTextStyle(color: Colors.green, size: 20)),
-          if ((widget.bookInfo.projectedQty ?? 0) > 0)
+          if ((widget.bookInfo.projectedQty ?? 0) > 0 && widget.bookInfo.price != null)
             Text( locale.lblStock+ ': ' + widget.bookInfo.projectedQty.toString()),
           32.height,
           // if (sampleFile.isNotEmpty)
