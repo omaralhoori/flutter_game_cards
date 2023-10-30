@@ -15,6 +15,7 @@ import 'package:bookkart_flutter/screens/bookmark/view/my_bookmark_screen.dart';
 import 'package:bookkart_flutter/screens/dashboard/view/dashboardFragment/category_list_fragment_screen.dart';
 import 'package:bookkart_flutter/screens/language_screen.dart';
 import 'package:bookkart_flutter/screens/settings/view/bluetooth_scan_screen.dart';
+import 'package:bookkart_flutter/screens/settings/view/recharge_balance_screen.dart';
 import 'package:bookkart_flutter/screens/settings/view/recommendations_screen.dart';
 import 'package:bookkart_flutter/screens/settings/view/transactions_report_screen.dart';
 import 'package:bookkart_flutter/screens/transaction/view/my_cart_screen.dart';
@@ -208,39 +209,6 @@ class _SettingScreenState extends State<SettingScreen> {
                       if (appStore.isLoggedIn)
                         Column(
                           children: [
-                            // SettingItemWidget(
-                            //   title: locale.lblTransactionHistory,
-                            //   leading: ic_payment.iconImage(size: SETTING_ICON_SIZE.toDouble()),
-                            //   decoration: BoxDecoration(borderRadius: radius()),
-                            //   trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
-                            //   onTap: () {
-                            //     if (!appStore.isNetworkAvailable) {
-                            //       toast("Internet is Not Available");
-                            //       appStore.setLoading(false);
-                            //       return;
-                            //     }
-
-                            //     AllInvoicesScreen().launch(context);
-                            //   },
-                            // ),
-                            // SettingItemWidget(
-                            //   title: locale.lblMyBookmark,
-                            //   leading: ic_bookmark.iconImage(size: SETTING_ICON_SIZE.toDouble()),
-                            //   decoration: BoxDecoration(borderRadius: radius()),
-                            //   trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
-                            //   onTap: () {
-                            //     if (!appStore.isLoggedIn) {
-                            //       SignInScreen().launch(context);
-                            //     } else {
-                            //       if (!appStore.isNetworkAvailable) {
-                            //         toast("Internet is Not Available");
-                            //         appStore.setLoading(false);
-                            //         return;
-                            //       }
-                            //       MyBookMarkScreen().launch(context);
-                            //     }
-                            //   },
-                            // ),
                             SettingItemWidget(
                               title: locale.lblMyCart,
                               leading: ic_shopping_cart.iconImage(size: SETTING_ICON_SIZE.toDouble()),
@@ -284,6 +252,21 @@ class _SettingScreenState extends State<SettingScreen> {
                                 }
 
                                 TransactionsReportScreen().launch(context);
+                              },
+                            ),
+                            SettingItemWidget(
+                              title: locale.lblRehargeRequest,
+                              leading: ic_shop.iconImage(size: SETTING_ICON_SIZE.toDouble()),
+                              decoration: BoxDecoration(borderRadius: radius()),
+                              trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
+                              onTap: () {
+                                if (!appStore.isNetworkAvailable) {
+                                  toast("Internet is Not Available");
+                                  appStore.setLoading(false);
+                                  return;
+                                }
+
+                              RechargeBalanceScreen().launch(context);
                               },
                             ),
                             SettingItemWidget(

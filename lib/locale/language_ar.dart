@@ -844,6 +844,18 @@ class LanguageAr extends BaseLanguage {
   @override
   // TODO: implement lblValidThru
   String get lblValidThru => "صالح حتى";
+  
+  @override
+  // TODO: implement lblValidThru
+  String get lblRehargeRequest => "شحن رصيد";
+  
+  @override
+  // TODO: implement lblValidThru
+  String get lblAmount => "المبلغ";
+  
+  @override
+  // TODO: implement lblValidThru
+  String get introRechargeBalance => "الرجاء إدخال المبلغ المراد شحنه";
 
 
 }

@@ -323,11 +323,19 @@ class LanguageFr extends BaseLanguage {
   @override
   // TODO: implement lblCardHolder
   String get lblCardHolder => 'Card Holder';
-  
+   @override
+  // TODO: implement lblValidThru
+  String get lblRehargeRequest => "Recharge Balance";
   @override
   // TODO: implement lblExprDate
   String get lblExprDate => "Expiry Date";
   
+  @override
+  // TODO: implement lblValidThru
+  String get lblAmount => "Amount";
+  @override
+  // TODO: implement lblValidThru
+  String get introRechargeBalance => "Please enter the amount you want to charge";
   @override
   // TODO: implement lblNumber
   String get lblNumber => "Card Number";

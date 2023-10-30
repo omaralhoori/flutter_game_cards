@@ -105,6 +105,9 @@ abstract class BaseLanguage {
   String get lblNumber;
   String get lblExprDate;
   String get lblCardHolder;
+  String get lblRehargeRequest;
+  String get introRechargeBalance;
+  String get lblAmount;
 
   String get lblSignIn;
 

@@ -841,4 +841,16 @@ class LanguageEn extends BaseLanguage {
   @override
   // TODO: implement lblValidThru
   String get lblValidThru => "Valid Thru";
+  
+  @override
+  // TODO: implement lblValidThru
+  String get lblRehargeRequest => "Recharge Balance";
+  
+  @override
+  // TODO: implement lblValidThru
+  String get lblAmount => "Amount";
+  
+  @override
+  // TODO: implement lblValidThru
+  String get introRechargeBalance => "Please enter the amount you want to charge";
 }

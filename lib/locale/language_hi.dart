@@ -829,4 +829,15 @@ class LanguageHi extends BaseLanguage {
 
   @override
   String get alreadyPurchased => "पहले से ही खरीदा";
+
+   @override
+  // TODO: implement lblValidThru
+  String get lblRehargeRequest => "Recharge Balance";
+
+  @override
+  // TODO: implement lblValidThru
+  String get lblAmount => "Amount";
+  @override
+  // TODO: implement lblValidThru
+  String get introRechargeBalance => "Please enter the amount you want to charge";
 }
