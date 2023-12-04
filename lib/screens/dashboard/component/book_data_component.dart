@@ -4,6 +4,7 @@ import 'package:bookkart_flutter/screens/dashboard/model/card_model.dart';
 import 'package:bookkart_flutter/screens/dashboard/model/dashboard_book_info_model.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
 import 'package:bookkart_flutter/utils/extensions/int_extensions.dart';
+import 'package:bookkart_flutter/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -27,7 +28,9 @@ class BookDataComponent extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (bookData.price.validate().toString().validate().toDouble() != 0.0) Text("${bookData.price.validate().toString().getFormattedPrice()} ${bookData.currency.validate()}", style: boldTextStyle(color: context.primaryColor)),
+              if (bookData.price.validate().toString().validate().toDouble() != 0.0) 
+              Text(formatMoney(bookData.price, bookData.currency), 
+              style: boldTextStyle(color: context.primaryColor)),
               // if (!getBoolAsync(HAS_IN_REVIEW) && (bookData.price.validate().toDouble() != 0.0))
               //   Text('${(bookData.price != 0.0) ? bookData.price.toString().getFormattedPrice() : 'Free'}', style: boldTextStyle(size: 16, color: (bookData.price != 0.0) ? context.primaryColor : Colors.green))
               // else
@@ -39,3 +42,4 @@ class BookDataComponent extends StatelessWidget {
     );
   }
 }
+

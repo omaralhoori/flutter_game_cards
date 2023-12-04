@@ -141,10 +141,24 @@ Future<List<CardModel>> getAllBookRestApi({
   // services.addAll(res.data.validate());
   // lastPageCallBack.call(res.data.validate().length != PER_PAGE_ITEM);
   for (var res in response['message']){
-    
-    services.add(CardModel.fromJson(res));
+    CardModel card = CardModel.fromJson(res);
+    await checkCurrency(card.currency);
+    services.add(card);
   }
   return services;
+}
+
+Future checkCurrency(String? currency) async{
+  String locale;
+  if (currency ==null) return ;
+  locale = getStringAsync(currency+"locale");
+  if (locale == ''){
+    final response =   await responseHandler(await APICall().getMethod("erpnext.api.data.get_currency_details?currency="+currency));
+       Map res = response['message'];
+    await setValue(currency+"locale", res['locale']);
+    await setValue(currency+"symbol", res['symbol']);
+    
+}
 }
 Future<List<InvoiceListModel>> getAllInvoices( int page, {
   int perPage = PER_PAGE_ITEM,

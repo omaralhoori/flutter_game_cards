@@ -252,3 +252,19 @@ Future shareInvoiceByteList({required String name}) async {
   }  
     await Share.shareXFiles(files, text: '');
 }
+
+
+String formatMoney(double? amount, String? currency) {
+String? locale;
+String? symbol;
+if (currency != null){
+  locale = getStringAsync(currency+"locale");
+  symbol = getStringAsync(currency+"symbol");
+   
+  }
+
+final format = NumberFormat.currency(locale: locale, symbol: symbol);
+
+return format.format(amount.validate());
+// return "${amount.validate().toString().getFormattedPrice()} ${currency.validate()}";
+}

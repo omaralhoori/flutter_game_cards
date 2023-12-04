@@ -8,6 +8,7 @@ import 'package:bookkart_flutter/utils/common_base.dart';
 import 'package:bookkart_flutter/utils/constants.dart';
 import 'package:bookkart_flutter/utils/extensions/int_extensions.dart';
 import 'package:bookkart_flutter/utils/images.dart';
+import 'package:bookkart_flutter/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
@@ -100,7 +101,7 @@ class _DescriptionComponentState extends State<DescriptionComponent> {
           ),
           if (!getBoolAsync(HAS_IN_REVIEW))
             Text(
-              (widget.bookInfo.projectedQty == 0 || widget.bookInfo.price == null) ? locale.avlblSoon : "${widget.bookInfo.price.validate().toString().getFormattedPrice()} ${widget.bookInfo.currency.validate()}",
+              (widget.bookInfo.projectedQty == 0 || widget.bookInfo.price == null) ? locale.avlblSoon : formatMoney(widget.bookInfo.price.validate(), widget.bookInfo.currency.validate()),
               style: boldTextStyle(color: context.primaryColor, size: 20),
             )
           else
