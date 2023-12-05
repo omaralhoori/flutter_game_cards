@@ -180,7 +180,7 @@ class _InvoiceItemState extends State<InvoiceItem> {
                         Text('${widget.invoice.itemCode.validate()}', style: boldTextStyle(), maxLines: 2),
                         Text(dateFormat.validate(), style: secondaryTextStyle()),
                         Marquee(child: Text(widget.invoice.invoiceId, style: secondaryTextStyle(size: 12))),
-                        Text(widget.invoice.itemRate.toString().validate().getFormattedPrice(), style: boldTextStyle()),
+                        Text(formatMoney(widget.invoice.itemRate, widget.invoice.currency), style: boldTextStyle()), //widget.invoice.itemRate.toString().validate().getFormattedPrice()
                       ],
                     ).expand(),
                   ],

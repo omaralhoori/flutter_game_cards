@@ -4,6 +4,7 @@ class InvoiceListModel{
   late String? image;
   late int totalQty;
   late double grandTotal;
+  late String currency;
 
 
   InvoiceListModel.fromJson(Map json){
@@ -12,5 +13,6 @@ class InvoiceListModel{
     this.image =json['image'];
     this.totalQty = json['total_qty'].toInt();
     this.grandTotal = json['grand_total'];
+    this.currency = json['currency'];
   }
 }

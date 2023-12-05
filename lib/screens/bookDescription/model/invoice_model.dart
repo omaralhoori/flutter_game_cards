@@ -7,6 +7,7 @@ class InvoiceModel{
     late double itemRate;
     late int qty;
     late String serialNo;
+    late String currency;
     late String? image;
 
     InvoiceModel({required this.invoiceId, required this.postingDate, required this.postingTime,
@@ -24,5 +25,6 @@ class InvoiceModel{
       this.itemRate = json['price_list_rate'];
       this.qty = json['qty'].toInt();
       this.image = json['image'];
+      this.currency = json['currency'];
     } 
 }

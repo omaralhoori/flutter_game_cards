@@ -171,6 +171,7 @@ Future<List<InvoiceListModel>> getAllInvoices( int page, {
   final response = await responseHandler(await APICall().getMethod("erpnext.api.data.get_invoices?start=$start&limit=$perPage"));
   //List<InvoiceListModel> invoices = [];
   for (var res in response['message']){
+    await checkCurrency(res['currency']);
     invoices.add(InvoiceListModel.fromJson(res));  
   }
 
