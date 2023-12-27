@@ -214,7 +214,9 @@ class _BluetoothScanScreenState extends State<BluetoothScanScreen> {
         postingDate: "2023-08-19",
         postingTime: "11:02:37",
         qty: 1,
-        serialNo: "12cc-66qq"
+        serialNo: "12cc-66qq",
+        printProcess: true,
+        processNo: "11122233"
     ));
     await bluetoothStore.printInvoices(invoices);
   }

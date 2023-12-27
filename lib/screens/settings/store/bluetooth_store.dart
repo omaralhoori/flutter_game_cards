@@ -201,6 +201,9 @@ abstract class _BluetoothStore with Store {
     for (var invoice in invoices){
       bytes += generator.text(invoice.itemCode, styles: PosStyles(align: PosAlign.center), linesAfter: 1);
       bytes += generator.text(invoice.serialNo, styles: PosStyles(align: PosAlign.center), linesAfter: 1);
+      if (invoice.printProcess){
+        bytes += generator.text(invoice.processNo.validate(), styles: PosStyles(align: PosAlign.center), linesAfter: 1);
+      }
       bytes += generator.qrcode(invoice.serialNo,align: PosAlign.center);
       bytes += generator.text("---------------------------", styles: PosStyles(align: PosAlign.center), linesAfter: 1);
     }

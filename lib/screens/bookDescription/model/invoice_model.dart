@@ -7,13 +7,15 @@ class InvoiceModel{
     late double itemRate;
     late int qty;
     late String serialNo;
+    late String? processNo;
+    late bool printProcess;
     late String currency;
     late String? image;
 
     InvoiceModel({required this.invoiceId, required this.postingDate, required this.postingTime,
       required this.grandTotal, required this.itemCode, 
       required this.image, required this.itemRate, 
-      required this.qty, required this.serialNo
+      required this.qty, required this.serialNo, required this.printProcess, required this.processNo
     });
 
     InvoiceModel.fromJson(Map<String, dynamic> json, this.serialNo){
@@ -26,5 +28,7 @@ class InvoiceModel{
       this.qty = json['qty'].toInt();
       this.image = json['image'];
       this.currency = json['currency'];
+      this.printProcess = json['print_process_serial'] == 1;
+      this.processNo = json['process_no'][this.serialNo];
     } 
 }
