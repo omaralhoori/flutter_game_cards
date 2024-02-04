@@ -12,6 +12,7 @@ import 'package:bookkart_flutter/screens/bookDescription/book_description_reposi
 import 'package:bookkart_flutter/screens/bookDescription/view/book_description_screen.dart';
 import 'package:bookkart_flutter/screens/bookmark/bookmark_repository.dart';
 import 'package:bookkart_flutter/screens/dashboard/view/dashboard_screen.dart';
+import 'package:bookkart_flutter/utils/utils.dart';
 import 'package:bookkart_flutter/utils/widgets/queryString.dart';
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:flutter/material.dart';
@@ -349,6 +350,7 @@ Future logout(BuildContext context) async {
       await appStore.setUserProfile('');
       await appStore.setSocialLogin(false);
       appStore.setLoading(false);
+      await clearCurrency();
       await SignInScreen().launch(context, isNewTask: true);
     },
   );

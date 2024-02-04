@@ -1,5 +1,6 @@
 import 'package:bookkart_flutter/main.dart';
 import 'package:bookkart_flutter/network/network_utils.dart';
+import 'package:bookkart_flutter/screens/settings/model/recharge_model.dart';
 import 'package:bookkart_flutter/screens/settings/model/transaction_model.dart';
 
 Future<String> getRechargeBalanceRestApi(Map<String, dynamic> request) async {
@@ -41,6 +42,19 @@ Future<List<TransactionModel>> getTransactionsReportRestApi(Map<String, dynamic>
     if (value['message'] != null){
       value['message'].forEach((element) {
     transactions.add(TransactionModel.fromJson(element));
+     });
+    }
+  return transactions;
+}
+
+Future<List<RechargeModel>> getRechargeReportRestApi(Map<String, dynamic> request) async {
+  List<RechargeModel> transactions = [];
+  appStore.setLoading(true);
+  final value =  await responseHandler(await APICall().postMethod("erpnext.api.data.get_recharge_report", request));
+    appStore.setLoading(false);
+    if (value['message'] != null){
+      value['message'].forEach((element) {
+    transactions.add(RechargeModel.fromJson(element));
      });
     }
   return transactions;

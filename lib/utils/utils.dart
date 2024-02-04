@@ -268,3 +268,13 @@ final format = NumberFormat.currency(locale: locale, symbol: symbol);
 return format.format(amount.validate());
 // return "${amount.validate().toString().getFormattedPrice()} ${currency.validate()}";
 }
+
+
+Future<void> clearCurrency() async{
+  var currencies = ["USD", "JOD", "IDR"];
+  for (var currency in currencies){
+        await removeKey(currency+ "locale");
+        await removeKey(currency+ "symbol");
+  }
+
+}

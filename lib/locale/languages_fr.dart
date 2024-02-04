@@ -329,6 +329,17 @@ class LanguageFr extends BaseLanguage {
   @override
   // TODO: implement lblExprDate
   String get lblExprDate => "Expiry Date";
+    @override
+  // TODO: implement lblEntryType
+  String get lblEntryType => 'Transaction Type';
+  
+  @override
+  // TODO: implement lblTime
+  String get lblTime => "Time";
+  
+  @override
+  // TODO: implement lblValidThru
+  String get lblRechargeHistory => "Recharge History";
   
   @override
   // TODO: implement lblValidThru

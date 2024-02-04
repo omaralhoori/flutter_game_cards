@@ -16,6 +16,7 @@ import 'package:bookkart_flutter/screens/dashboard/view/dashboardFragment/catego
 import 'package:bookkart_flutter/screens/language_screen.dart';
 import 'package:bookkart_flutter/screens/settings/view/bluetooth_scan_screen.dart';
 import 'package:bookkart_flutter/screens/settings/view/recharge_balance_screen.dart';
+import 'package:bookkart_flutter/screens/settings/view/recharge_report_screen.dart';
 import 'package:bookkart_flutter/screens/settings/view/recommendations_screen.dart';
 import 'package:bookkart_flutter/screens/settings/view/transactions_report_screen.dart';
 import 'package:bookkart_flutter/screens/transaction/view/my_cart_screen.dart';
@@ -252,6 +253,21 @@ class _SettingScreenState extends State<SettingScreen> {
                                 }
 
                                 TransactionsReportScreen().launch(context);
+                              },
+                            ),
+                            SettingItemWidget(
+                              title: locale.lblRechargeHistory,
+                              leading: ic_term_and_condition.iconImage(size: SETTING_ICON_SIZE.toDouble()),
+                              decoration: BoxDecoration(borderRadius: radius()),
+                              trailing: Icon(Icons.keyboard_arrow_right, size: 20, color: context.iconColor),
+                              onTap: () {
+                                if (!appStore.isNetworkAvailable) {
+                                  toast("Internet is Not Available");
+                                  appStore.setLoading(false);
+                                  return;
+                                }
+
+                                RechargeReportScreen().launch(context);
                               },
                             ),
                             SettingItemWidget(

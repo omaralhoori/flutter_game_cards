@@ -834,6 +834,17 @@ class LanguageHi extends BaseLanguage {
   // TODO: implement lblValidThru
   String get lblRehargeRequest => "Recharge Balance";
 
+  
+  @override
+  // TODO: implement lblValidThru
+  String get lblRechargeHistory => "Recharge History";
+    @override
+  // TODO: implement lblEntryType
+  String get lblEntryType => 'Transaction Type';
+  
+  @override
+  // TODO: implement lblTime
+  String get lblTime => "Time";
   @override
   // TODO: implement lblValidThru
   String get lblAmount => "Amount";

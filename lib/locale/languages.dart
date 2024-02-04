@@ -130,6 +130,7 @@ abstract class BaseLanguage {
   String get lblTermPrivacy;
 
   String get lblMyBookmark;
+  String get lblRechargeHistory;
 
   String get lblNoBookFound;
 
@@ -544,6 +545,8 @@ abstract class BaseLanguage {
   String get lblVoucher;
   String get lblVoucherNo;
   String get lblDate;
+  String get lblTime;
+  String get lblEntryType;
   String get lblDebit;
   String get lblCredit;
 }
